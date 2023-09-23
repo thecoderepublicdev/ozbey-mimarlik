@@ -2,6 +2,7 @@ import Dropdown from "@components/shared/Dropdown";
 import NavigationMenuData from "@data/Navigation";
 import Link from "next/link";
 
+
 export default function Navigation() {
     return(
         <nav role="navigation" className="m-0 p-0">

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+
 export default function Logo() {
     return(
         <picture className="w-[200px]">

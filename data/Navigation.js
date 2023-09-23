@@ -52,5 +52,4 @@ const NavigationMenuData = [
         title: "İletişim"
     },
 ];
-
 export default NavigationMenuData;
