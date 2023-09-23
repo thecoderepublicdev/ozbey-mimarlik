@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Logo() {
     return(
-        <picture className="w-[200px]">
+        <picture id="logo" className="w-[200px]">
             <Link href="/">
                 <Image
                     src={require('../assets/images/logo.png')}

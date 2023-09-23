@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Navigation() {
     return(
-        <nav role="navigation" className="m-0 p-0">
+        <nav id="nav" role="navigation" className="m-0 p-0">
             <ul className="flex gap-4 m-0 p-0">
                 {NavigationMenuData.map((item, index) => (
                     <li key={index}>

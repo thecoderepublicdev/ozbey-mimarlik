@@ -51,5 +51,9 @@ const NavigationMenuData = [
         path: '/kentsel-donusum',
         title: "İletişim"
     },
+    {
+        path: '/kentsel-donusum2',
+        title: "İletişim2"
+    },
 ];
 export default NavigationMenuData;

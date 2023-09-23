@@ -4,6 +4,8 @@ import Layout from './_layout';
 export default function Index() {
 
   return(
-    <Layout></Layout>
+    <Layout>
+      <h1>bura indextir ha</h1>
+    </Layout>
   )
 }
