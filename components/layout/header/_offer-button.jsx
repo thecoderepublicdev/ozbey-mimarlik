@@ -1,7 +1,10 @@
 import Modal from "@components/shared/Modal";
 import { useEffect, useState } from "react";
 import { Switch } from '@headlessui/react'
+import { useFormik } from "formik";
 import Image from "next/image";
+import classNames from "classnames";
+import * as Yup from 'yup';
 
 
 export default function OfferButton() {
@@ -9,6 +12,33 @@ export default function OfferButton() {
     const [selectedCity, setSelectedCity] = useState(1);
     const [subProvinces, setSubProvinces] = useState([])
     const [ownerStatus, setOwnerStatus] = useState(false);
+
+    const { values, errors, touched, handleSubmit, isSubmitting } = useFormik({
+        initialValues: {
+            name: "",
+            phone: "",
+            city: "",
+            subProvince: "",
+            owner: false,
+            message: ""
+        },
+        validationSchema: Yup.object({
+            name: Yup.string().required('Ad & Soyad zorunludur'),
+            phone: Yup.string().required('Telefon numarası iletişim için zorunludur.'),
+            city: Yup.string().required('İl bilgisi zorunludur'),
+            subProvince: Yup.string().required('İlçe bilgisi zorunludur'),
+            owner: Yup.string().required('Bina sahipliği bilgisi zorunludur'),
+        }),
+        onSubmit: (values) => {
+            console.log(values);
+            alert("Form bilgileri console'a gönderildi")
+        }
+
+    });
+
+    useEffect(function() {
+        console.log("Errors: ", errors)
+    }, [errors]);
 
     useEffect(function() {
         fetch('https://turkiyeapi.cyclic.app/api/v1/provinces')
@@ -26,34 +56,32 @@ export default function OfferButton() {
         .then((response) => setSubProvinces(response.data.districts))
     }, [selectedCity]);
 
-    console.log(provinces);
-
     return(
         <Modal title="Kentsel Dönüşüm Başvurusu Oluştur">
-            <Modal.Trigger className="group p-9 transition-all ease-in-out bg-[#AA530E] hover:bg-black flex items-center gap-4 text-white h-full">
+            <Modal.Trigger className="animate__animated animate__fadeIn group p-9 transition-all ease-in-out bg-[#AA530E] hover:bg-black flex items-center gap-4 text-white h-full">
                 <label>Kentsel Dönüşüm Başvurusu</label>
                 <span className="material-symbols-outlined">arrow_right_alt</span>
             </Modal.Trigger>
 
             <Modal.Content>
                 <div className="w-[600px] grid grid-cols-1">
-                    <div className="bg-[#AA530E] overflow-hidden max-h-[200px] relative">
+                    <div className="bg-[#AA530E] animate__animated animate__fadeIn overflow-hidden max-h-[200px] relative">
                         <Image
                             src={require("../../../assets/images/kentsel-donusum-form-image.jpg")}
                             className="w-full h-full object-cover object-center m-0 p-0 opacity-20"
                             priority={true}
                             alt="Kentsel Dönüşüm Başvuru Formu"
                         />
-                        <h1 className="absolute bottom-0 p-9 text-white text-4xl font-bold">Kentsel Dönüşüm Başvurusu Oluştur</h1>
+                        <h1 className="animate__animated animate__fadeInUp absolute bottom-0 p-9 text-white text-4xl font-bold">Kentsel Dönüşüm Başvurusu Oluştur</h1>
                     </div>
 
                     <div>
                         <form className="p-6 grid gap-4">
-                            <input type="text" placeholder="Adınız & Soyadınız" className="p-4  w-full border border-gray-200 outline-none focus:border-[#AA530E] focus:text-[#AA530E] focus:placeholder:text-[#AA530E]"/>
-                            <input type="tel" placeholder="Telefon Numaranız" className="p-4  w-full border border-gray-200 outline-none focus:border-[#AA530E] focus:text-[#AA530E] focus:placeholder:text-[#AA530E]"/>
+                            <input required={true} type="text" placeholder="Adınız & Soyadınız" className="p-4  w-full border border-gray-200 outline-none focus:border-[#AA530E] focus:text-[#AA530E] focus:placeholder:text-[#AA530E]"/>
+                            <input required={true} type="tel" placeholder="Telefon Numaranız" className="p-4  w-full border border-gray-200 outline-none focus:border-[#AA530E] focus:text-[#AA530E] focus:placeholder:text-[#AA530E]"/>
                             
                             <div className="grid grid-cols-2 gap-4">
-                                <select onChange={(e) => setSelectedCity(e.target.value)} className="p-4  w-full border border-gray-200 outline-none  focus:border-[#AA530E] focus:text-[#AA530E] focus:placeholder:text-[#AA530E]">
+                                <select required={true} onChange={(e) => setSelectedCity(e.target.value)} className="p-4  w-full border border-gray-200 outline-none  focus:border-[#AA530E] focus:text-[#AA530E] focus:placeholder:text-[#AA530E]">
                                     {provinces.map((province) => (
                                         <option key={province.id} value={province.id}>
                                             {province.name}
@@ -61,7 +89,7 @@ export default function OfferButton() {
                                     ))}
                                 </select>
 
-                                <select className="p-4 w-full border border-gray-200 outline-none  focus:border-[#AA530E] focus:text-[#AA530E] focus:placeholder:text-[#AA530E]">
+                                <select required={true} className="p-4 w-full border border-gray-200 outline-none  focus:border-[#AA530E] focus:text-[#AA530E] focus:placeholder:text-[#AA530E]">
                                     {subProvinces.map((subProvince) => (
                                         <option key={subProvince.id}>
                                             {subProvince.name}
@@ -71,9 +99,10 @@ export default function OfferButton() {
                             </div>
 
                             <div className="flex justify-between items-center p-4 bg-gray-100 ">
-                                <label className="w-full block" for="owner">Bina Sahibi Misiniz?</label>
+                                <label required={true} className="w-full block" htmlFor="owner">Bina Sahibi Misiniz?</label>
                                 <Switch
                                     id="owner"
+                                    required
                                     checked={ownerStatus}
                                     onChange={setOwnerStatus}
                                     className={`${ownerStatus ? 'bg-[#AA530E]' : 'bg-gray-200'}
@@ -87,12 +116,13 @@ export default function OfferButton() {
                                 </Switch>
                             </div>
 
-                            <textarea className="p-4  w-full border min-h-[150px] resize-none border-gray-200 outline-none  focus:border-[#AA530E] focus:text-[#AA530E] focus:placeholder:text-[#AA530E]" placeholder="Mesajınız">
+                            <textarea className="p-4  w-full border min-h-[150px] resize-none border-gray-200 outline-none  focus:border-[#AA530E] focus:text-[#AA530E] focus:placeholder:text-[#AA530E]" placeholder="Mesajınız"></textarea>
 
-                            </textarea>
-
-                            <button type="submit" className="group p-4 text-center transition-all ease-in-out bg-[#AA530E] hover:bg-black  gap-4 text-white">
-                                Gönder
+                            <button type="submit" className={classNames(
+                                'animate__animated group p-4 text-center transition-all ease-in-out bg-[#AA530E] hover:bg-black  gap-4 text-white',
+                                values.length < 0 && 'animate__shakeX'
+                            )}>
+                                {isSubmitting ? 'Lütfen bekleyin' : 'Gönder'}
                             </button>
                         </form>
                     </div>

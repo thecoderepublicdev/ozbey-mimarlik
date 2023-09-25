@@ -19,7 +19,7 @@ function Trigger({children}) {
 
 function Content({children}) {
     return(
-        <Popover.Panel as="div" className="p-4 absolute min-w-[300px] mt-2 shadow-md bg-white">
+        <Popover.Panel as="div" className="animate__animated animate__fadeIn transform transition-all ease-in-out p-4 absolute min-w-[300px] mt-2 shadow-md bg-white">
             {children}
         </Popover.Panel>
     )

@@ -4,8 +4,8 @@ import Link from "next/link";
 
 export default function Logo() {
     return(
-        <picture id="logo" className="w-[200px]">
-            <Link href="/">
+        <picture id="logo" className="w-[200px] overflow-hidden">
+            <Link href="/" className="animate__animated animate__fadeIn">
                 <Image
                     src={require('../assets/images/logo.png')}
                     className="w-full h-auto"

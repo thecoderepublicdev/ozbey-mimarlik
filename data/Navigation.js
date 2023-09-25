@@ -48,7 +48,7 @@ const NavigationMenuData = [
         title: "Kentsel Dönüşüm"
     },
     {
-        path: '/kentsel-donusum',
+        path: '/iletisim',
         title: "İletişim"
     },
 ];
