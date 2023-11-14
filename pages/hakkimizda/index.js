@@ -1,7 +1,6 @@
 import { NextSeo } from "next-seo";
 import Layout from "../_layout";
 import Masthead from "@about-us/Masthead";
-import Space from "@components/shared/Space";
 import Information from "@components/layout/about-us/Information";
 
 export default function AboutUs() {
@@ -14,7 +13,6 @@ export default function AboutUs() {
         <Layout>
             <NextSeo {...SearchEngineOptimization}/>
             <Masthead/>
-            <Space/>
             <Information/>
         </Layout>
     )

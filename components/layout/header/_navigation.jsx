@@ -1,17 +1,21 @@
 import Dropdown from "@components/shared/Dropdown";
 import NavigationMenuData from "@data/Navigation";
+import classNames from "classnames";
 import Link from "next/link";
 
 
 export default function Navigation() {
+    const className = classNames(
+        'block p-4 text-black/50 outline-none hover:text-black relative after:absolute after:content-[""] after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:transition-all after:w-0 after:bg-black after:h-1 hover:after:w-[40px]'
+    )
     return(
         <nav id="nav" role="navigation" className="m-0 p-0">
-            <ul className="flex gap-4 m-0 p-0 animate__animated animate__fadeIn">
+            <ul className="flex gap-4 m-0 p-0 justify-between">
                 {NavigationMenuData.map((item, index) => (
                     <li key={index}>
                         {item.isChildExists ? (
                             <Dropdown>
-                                <Dropdown.Trigger>
+                                <Dropdown.Trigger className={className}>
                                     {item.title}
                                 </Dropdown.Trigger>
 
@@ -21,7 +25,9 @@ export default function Navigation() {
                             </Dropdown>
                         ) : (
                             <Link 
-                                className="block uppercase text-black/50 hover:text-[#AA530E] transition-all hover:transition-all ease-in-out p-9 hover:bg-gradient-to-b from-[#F5C16C]/20 to-transparent" href={item.path}>
+                                className={className} 
+                                href={item.path}
+                            >
                                 {item.title}
                             </Link>
                         )}

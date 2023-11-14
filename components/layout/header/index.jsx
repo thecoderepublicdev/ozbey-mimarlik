@@ -1,19 +1,49 @@
 import Logo from "@components/Logo";
 import Navigation from "./_navigation";
 import OfferButton from "./_offer-button";
-import { useState } from "react";
+import { createContext, useContext, useState } from "react";
 import MobileMenu from "./_mobile-menu";
+import classNames from "classnames";
+import { useRouter } from "next/router";
 
-export default function Header() {
+
+const HeaderContext = createContext(null);
+
+export const useHeader = () => {
+    return useContext(HeaderContext)
+};
+
+export default function Header({variant = "default"}) {
     const [isMobileMenuOpen, setMobileMenuStatus] = useState(false);
+    const router = useRouter();
+    
+    const ProviderValues = {
+        currentPagePath: router.asPath
+    }
+    
+    const Props = {
+        Header: {
+            className: classNames(
+                {
+                    "w-full sticky top-0 bg-white/50 backdrop-blur-md z-10": true
+                }
+            )
+        },
+        HeaderInner: {
+            className: "hidden lg:flex justify-between items-center pl-4"
+        }
+    }
+
     return(
-        <header id="header" className="bg-white block relative transition-all ease-in-out pl-2 p-6 lg:p-0 lg:pl-[60px] m-0">
-            <div className="hidden lg:flex justify-between items-center m-0 p-0">
-                <Logo/>
-                <Navigation/>
-                <OfferButton/>
-            </div>
-            <MobileMenu/>
-        </header>
+        <HeaderContext.Provider value={{variant: variant}}>
+            <header {...Props.Header}>
+                <div {...Props.HeaderInner}>
+                    <Logo/>
+                    <Navigation/>
+                    <OfferButton/>
+                </div>
+                <MobileMenu/>
+            </header>
+        </HeaderContext.Provider>
     )
 }

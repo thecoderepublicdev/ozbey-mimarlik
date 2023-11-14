@@ -1,32 +1,32 @@
-import Companies from '@data/Companies';
 import CompanyInformations from '@data/CompanyInformations';
 import classNames from 'classnames';
-import { Lora } from 'next/font/google';
-import Image from 'next/image';
+import { Syne, DM_Sans } from 'next/font/google';
 
-const lora = Lora({subsets: ['latin']});
+const syne = Syne({subsets: ['latin']});
+const DMSans = DM_Sans({subsets: ['latin']});
 
 export default function Information(){
     return(
-        <section id="about-us-masthead" className={`border-y relative bg-auto bg-opacity-100 bg-center bg-no-repeat border-[#AA530E]/50 block overflow-hidden`}>
-            <div className="container mx-auto max-w-screen-xl border-x border-[#AA530E]/50 overflow-hidden">
-                <div className='grid grid-cols-2 items-stretch gap-0 min-h-[600px] place-items-center'>
-                    {CompanyInformations.map((information, index) => (
-                        <div key={index} className='p-9 flex flex-col gap-2 border-b border-[#AA530E]/50'>
-                            <span className='material-symbols-outlined text-[#AA530E] animate__animated animate__fadeInUp'>architecture</span>
-                            {information.subTitle && (
-                                <div className='animate__animated animate__fadeInUp flex gap-2 items-center align-center content-center p-2 border border-[#AA530E] text-[#AA530E] w-fit'>
-                                    <label>{information.subTitle}</label>
-                                </div>
-                            )}
-                            <div 
-                                className={classNames(
-                                    `${lora.className} text-bold text-2xl animate__animated animate__fadeInUp`
-                                )}
-                            >
-                                {information.title}
-                            </div>
-                            <p className='text-black/50 animate__animated animate__fadeInUp'>{information.description}</p>
+        <section className="bg-brand-secondary/10 min-h-screen grid place-items-center">
+            <div className="py-8 px-4 mx-auto max-w-screen-2xl lg:py-16 lg:px-6">
+                <div>
+                    <h2 className={classNames(
+                        "mb-4 text-4xl tracking-tight font-bold text-brand-primary",
+                        syne.className
+                    )}>Bizi yakından tanıyın</h2>
+                    <p className={classNames(
+                        "mb-8 font-light text-gray-500 lg:mb-16 sm:text-xl",
+                        DMSans.className
+                    )}>1997'den günümüze kadar faaliyet gösteren şirketimizi sizlere tanıtmak isteriz.</p>
+                </div> 
+                <div className="grid gap-4 lg:grid-cols-2">
+                    {CompanyInformations.map((information, id) => (
+                        <div className="hover:drop-shadow-2xl transition-all ease-in-out flex flex-col justify-between gap-4 items-start p-8 bg-white md:p-12">
+                            <h3 className={classNames(
+                                'font-medium text-2xl',
+                                syne.className
+                            )}>{information.title}</h3> 
+                            <p className='text-gray-500'>{information.description}</p>
                         </div>
                     ))}
                 </div>

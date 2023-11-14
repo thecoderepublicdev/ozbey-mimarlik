@@ -2,10 +2,11 @@
   "compilerOptions": {
     "paths": {
       "@assets/*": ["./assets/*"],
-      "@images/*": ["./images/*"],
+      "@images/*": ["./assets/images/*"],
       "@data/*": ["./data/*"],
       "@styles/*": ["./styles/*"],
       "@components/*": ["./components/*"],
+      "@shared/*": ["./components/shared/*"],
       "@layout/*": ["./components/layout/*"],
       "@home/*": ["./components/layout/home/*"],
       "@about-us/*": ["./components/layout/about-us/*"]

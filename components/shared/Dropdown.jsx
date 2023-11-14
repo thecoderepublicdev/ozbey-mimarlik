@@ -1,17 +1,14 @@
-import { createContext, createElement, Fragment } from "react";
+import { createContext, Fragment } from "react";
 import { Popover } from '@headlessui/react'
 import classNames from 'classnames';
 
 const DropdownContext = createContext(null);
 
-function Trigger({children}) {
+function Trigger({className, children}) {
     return <Popover.Button as={Fragment}>
         {({open}) => (
             <button
-                className={classNames(
-                    'block relative uppercase text-black/50 transition-all ease-in-out border-none p-9 hover:bg-gradient-to-b from-[#F5C16C]/20 to-transparent outline-none focus:outline-none',
-                    open && 'text-[#AA530E] bg-gradient-to-b from-[#F5C16C]/20 to-transparent'
-                )}
+                className={className}
             >{children}</button>
         )}
     </Popover.Button>
@@ -19,7 +16,7 @@ function Trigger({children}) {
 
 function Content({children}) {
     return(
-        <Popover.Panel as="div" className="animate__animated animate__fadeIn transform transition-all ease-in-out p-4 absolute min-w-[300px] mt-2 shadow-md bg-white">
+        <Popover.Panel as="div" className="z-50 transform transition-all ease-in-out p-4 absolute min-w-[300px] mt-2 shadow-md bg-white/50 backdrop-blur-md">
             {children}
         </Popover.Panel>
     )
@@ -28,7 +25,7 @@ function Content({children}) {
 export default function Dropdown({children}) {
     return(
         <DropdownContext.Provider value={null}>
-            <Popover>
+            <Popover className="relative">
                 {children[0]}
                 {children[1]}
             </Popover>
