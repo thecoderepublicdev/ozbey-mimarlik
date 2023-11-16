@@ -30,7 +30,7 @@ export default function Header({variant = "default"}) {
             )
         },
         HeaderInner: {
-            className: "hidden lg:flex justify-between items-center pl-4"
+            className: "hidden lg:flex justify-between items-center px-4 py-2"
         }
     }
 

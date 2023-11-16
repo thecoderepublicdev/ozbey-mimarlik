@@ -27,7 +27,7 @@ export default function OfferButton() {
             title: "Kentsel Dönüşüm Başvurusu Oluştur"
         },
         ModalTrigger: {
-            className: "p-6 transition-all ease-in-out bg-brand-primary hover:bg-black flex items-center gap-4 text-white h-full"
+            className: "px-6 py-4 text-sm transition-all ease-in-out bg-brand-primary hover:bg-black flex items-center gap-4 text-white h-full"
         } 
     }
 
@@ -88,7 +88,7 @@ export default function OfferButton() {
     return(
         <Modal {...Props.Modal}>
             <Modal.Button {...Props.ModalTrigger}>
-                <label>Kentsel Dönüşüm Başvurusu</label>
+                <label className="leading-tight text-left">Kentsel Dönüşüm Başvurusu</label>
                 <span className="material-symbols-outlined">arrow_right_alt</span>
             </Modal.Button>
 

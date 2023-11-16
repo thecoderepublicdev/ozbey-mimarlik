@@ -47,12 +47,12 @@ export default function Masthead({children}) {
         },
     ];
 
-    const SpecsTag = ({ icon, title, className }) => {
+    const SpecsTag = ({ icon, title, className,style}) => {
         return(
             <div className={classNames(
                 'animate__animated animate__fadeInUp col-start-auto text-brand-primary backdrop-blur-sm p-4 flex gap-4 justify-center align-center items-center content-center',
                 className
-            )}>
+            )} style={style}>
                 <span className='material-symbols-outlined'>{icon}</span>
                 <label>{title}</label>
             </div>
@@ -106,11 +106,11 @@ export default function Masthead({children}) {
                 <h1 {...Props.MastheadTitle}>Göl Manzaralı & Bahçeli Yaşam <br/> Artık Avcılar’da!</h1>
                 <div className='grid grid-cols-2 lg:grid-cols-6 mt-6 gap-2'>
                     {Specs.map((spec, key) => !spec.isHidden && (
-                        <SpecsTag 
+                        <SpecsTag
                             key={key} 
                             icon={spec.icon} 
                             title={spec.title}
-                            className={`animate__delay-${key}s`}
+                            style={{animationDelay:`${key + 1}00ms`}}
                         />
                     ))}
                 </div>

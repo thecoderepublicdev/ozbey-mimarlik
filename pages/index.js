@@ -6,6 +6,7 @@ import Testimonials from '@components/layout/home/Testimonials';
 import Masthead from '@components/layout/home/Masthead';
 import Companies from '@components/shared/Companies';
 import MastheadBottom from '@components/layout/home/MastheadBottom';
+import Loading from '@components/layout/Loading';
 
 export default function Index() {
   const router = useRouter();
@@ -16,8 +17,9 @@ export default function Index() {
         title='Özbey İnşaat & Mimarlık'
         description='Gerek kentsel dönüşüm projesi olarak gerekse kat karşılığı yaptığımız tüm projelerimizde öncelik olarak sizin hayallerinizi gerçekleştirmek için buradayız.'
       />
+      <Loading/>
       <Masthead>
-        <MastheadBottom/>
+        <MastheadBottom backgroundColor={"bg-slate-100"} titleColor="text-gray-950" descColor="text-gray-950/50" borderClass="after:left-0 after:bottom-0 after:w-14 mb-4 after:h-1 pb-5 after:bg-brand-primary"/>
       </Masthead>
       <Companies/>
       <Testimonials/>

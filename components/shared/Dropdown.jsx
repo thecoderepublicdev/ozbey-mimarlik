@@ -16,7 +16,7 @@ function Trigger({className, children}) {
 
 function Content({children}) {
     return(
-        <Popover.Panel as="div" className="z-50 transform transition-all ease-in-out p-4 absolute min-w-[300px] mt-2 shadow-md bg-white/50 backdrop-blur-md">
+        <Popover.Panel as="div" className="z-50 transform transition-all ease-in-out p-4 absolute min-w-[300px] mt-2 shadow-md bg-white">
             {children}
         </Popover.Panel>
     )

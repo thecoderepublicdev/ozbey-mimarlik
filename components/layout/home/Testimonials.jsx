@@ -12,7 +12,7 @@ export default function Testimonials() {
                 <div>
                     <h2 className={classNames(
                         "mb-4 text-4xl tracking-tight font-bold text-brand-primary",
-                        syne.className
+                        DMSans.className
                     )}>Bize değil, onlara güvenin</h2>
                     <p className={classNames(
                         "mb-8 font-light text-gray-500 lg:mb-16 sm:text-xl",
