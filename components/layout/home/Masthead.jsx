@@ -47,7 +47,7 @@ export default function Masthead({children}) {
         },
     ];
 
-    const SpecsTag = ({ icon, title, className,style}) => {
+    const SpecsTag = ({ icon, title, className, style}) => {
         return(
             <div className={classNames(
                 'animate__animated animate__fadeInUp col-start-auto text-brand-primary backdrop-blur-sm p-4 flex gap-4 justify-center align-center items-center content-center',
@@ -82,12 +82,12 @@ export default function Masthead({children}) {
         },
         MastheadContent: {
             className: classNames(
-                'p-10 grid place-content-center place-items-center gap-4'
+                'p-10 grid place-content-start place-items-start gap-4 w-full'
             )
         },
         MastheadTitle: {
             className: classNames(
-                'text-black text-7xl text-center font-bold tracking-tighter', DMSans.className
+                'text-black text-7xl text-left font-bold tracking-tighter', DMSans.className
             )
         },
         MastheadDescription: {
@@ -104,15 +104,21 @@ export default function Masthead({children}) {
                     %40 peşin ödemeli ve 24 Ay Vade Ödeme Şekli ile Daire Fiyatına Villa Sahibi Olun!
                 </p>
                 <h1 {...Props.MastheadTitle}>Göl Manzaralı & Bahçeli Yaşam <br/> Artık Avcılar’da!</h1>
-                <div className='grid grid-cols-2 lg:grid-cols-6 mt-6 gap-2'>
-                    {Specs.map((spec, key) => !spec.isHidden && (
-                        <SpecsTag
-                            key={key} 
-                            icon={spec.icon} 
-                            title={spec.title}
-                            style={{animationDelay:`${key + 1}00ms`}}
-                        />
-                    ))}
+                <div className='flex justify-between align-center items-center w-full'>
+                    <div className='grid place-items-start place-content-start grid-cols-2 lg:grid-cols-6 mt-6 gap-2'>
+                        {Specs.map((spec, key) => !spec.isHidden && (
+                            <SpecsTag
+                                key={key} 
+                                icon={spec.icon} 
+                                title={spec.title}
+                                style={{animationDelay:`${key + 1}00ms`}}
+                            />
+                        ))}
+                    </div>
+
+                    <a href='#' className='border rounded-full px-4 py-2'>
+                        Detaylı Bilgi Al
+                    </a>
                 </div>
             </div>
 
