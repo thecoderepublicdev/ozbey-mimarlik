@@ -8,12 +8,12 @@ const Loading = () => {
   const [animationComplete, setAnimationComplete] = useState(false);
 
   const letterContainerVariant = {
-    hidden: { opacity: 0, y: -50 }, // Initial position, off-screen above
-    visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
+    hidden: { opacity: 0, y: -50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.1 } },
   };
 
   const exitVariants = {
-    hidden: { opacity: 0, y: "100%", transition: { duration: 0.8, ease: "easeInOut" } },
+    hidden: { opacity: 0, y: "100%", transition: { duration: 0.1, ease: "easeInOut" } },
   };
 
   useEffect(() => {
@@ -42,7 +42,7 @@ const Loading = () => {
 
           return updatedShowImages;
         });
-      }, (index + 1) * 500); // Add 1 second delay before each letter starts
+      }, (index + 1) * 300); // Add 1 second delay before each letter starts
 
       return () => clearTimeout(timeoutIds[index]);
     });
@@ -115,8 +115,6 @@ const Loading = () => {
             alignItems: "center",
           }}
         >
-          {/* Content to show after animation is complete */}
-          <div>Your content here</div>
         </motion.div>
       )}
     </AnimatePresence>
