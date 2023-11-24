@@ -1,13 +1,9 @@
 import { useEffect, useState } from "react";
-import { Switch } from '@headlessui/react'
 import { useFormik } from "formik";
 import classNames from "classnames";
 import * as Yup from 'yup';
 import Modal from '@shared/Modal';
-
-const collectForm = ({...args}) => {
-    console.log({...args});
-}
+import axios from "axios";
 
 export default function OfferButton() {
     const [selectedCity, setSelectedCity] = useState(1);
@@ -36,23 +32,33 @@ export default function OfferButton() {
 
     const OfferForm = useFormik({
         initialValues: {
-            name: "",
+            fullName: "",
             phone: "",
+            email: "",
             city: "",
             subProvince: "",
             owner: false,
             message: ""
         },
         validationSchema: Yup.object({
-            name: Yup.string().required('Ad & Soyad zorunludur'),
-            phone: Yup.string().required('Telefon numarası iletişim için zorunludur.'),
+            fullName: Yup.string().required('Ad & Soyad zorunludur'),
+            phone: Yup.number().required('Telefon numarası iletişim için zorunludur.'),
+            email: Yup.string().email().required('E-Posta Adresi Zorunludur'),
             city: Yup.string().required('İl bilgisi zorunludur'),
             subProvince: Yup.string().required('İlçe bilgisi zorunludur'),
-            owner: Yup.boolean().required("Bu alan zorunludur").oneOf([true], "Bu alan zorunludur")
         }),
-        onSubmit: (values) => {
-            console.log(values);
-            alert("Form bilgileri console'a gönderildi")
+        handleSubmit: ({e}) => {
+            console.log("handleSubmit", ...e);
+        },
+        handleChange: ({e}) => {
+            console.log(e);
+        },
+        onSubmit: async (values, { setSubmitting }) => {
+            console.log("onSubmit", values);
+            
+            await axios.post('/api/mail/send', values).then(res => {
+                console.log("Offer Form Sended", res.data)
+            })
         }
     });
 
@@ -103,12 +109,13 @@ export default function OfferButton() {
             <Modal.Content>
                 <div className="w-full grid grid-cols-1">
                     <div>
-                        <form method="POST" action={false} onSubmit={handleSubmit} className="grid gap-4">
-                            <input onChange={OfferForm.handleChange} required={true} type="text" placeholder="Adınız & Soyadınız" className="p-4  w-full border border-gray-200 outline-none focus:border-[#AA530E] focus:text-[#AA530E] focus:placeholder:text-[#AA530E]"/>
-                            <input onChange={OfferForm.handleChange} required={true} type="tel" placeholder="Telefon Numaranız" className="p-4  w-full border border-gray-200 outline-none focus:border-[#AA530E] focus:text-[#AA530E] focus:placeholder:text-[#AA530E]"/>
+                        <form method="POST" onSubmit={handleSubmit} className="grid gap-4">
+                            <input disabled={isSubmitting} id="fullName" name="fullName" onChange={OfferForm.handleChange} required={true} type="text" placeholder="Adınız & Soyadınız" className="p-4  w-full border border-gray-200 outline-none focus:border-[#AA530E] focus:text-[#AA530E] focus:placeholder:text-[#AA530E]"/>
+                            <input disabled={isSubmitting} id="phone" name="phone" onChange={OfferForm.handleChange} required={true} type="tel" placeholder="Telefon Numaranız" className="p-4  w-full border border-gray-200 outline-none focus:border-[#AA530E] focus:text-[#AA530E] focus:placeholder:text-[#AA530E]"/>
+                            <input disabled={isSubmitting} id="email" name="email" onChange={OfferForm.handleChange} required={true} type="email" placeholder="E-Posta Adresiniz" className="p-4  w-full border border-gray-200 outline-none focus:border-[#AA530E] focus:text-[#AA530E] focus:placeholder:text-[#AA530E]"/>
                             
                             <div className="grid grid-cols-2 gap-4">
-                                <select disabled={APIErrors.provinces} required={true} onChange={OfferForm.handleChange} className="p-4  w-full border border-gray-200 outline-none disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed  focus:border-[#AA530E] focus:text-[#AA530E] focus:placeholder:text-[#AA530E]">
+                                <select id="city" name="city" disabled={APIErrors.provinces || isSubmitting} required={true} onChange={OfferForm.handleChange} className="p-4  w-full border border-gray-200 outline-none disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed  focus:border-[#AA530E] focus:text-[#AA530E] focus:placeholder:text-[#AA530E]">
                                     {provinces?.map((province) => (
                                         <option key={province.id} value={province.id}>
                                             {province.name}
@@ -116,7 +123,7 @@ export default function OfferButton() {
                                     ))}
                                 </select>
 
-                                <select disabled={APIErrors.subProvinces} required={true} onChange={OfferForm.handleChange} className="p-4 w-full border disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed border-gray-200 outline-none  focus:border-[#AA530E] focus:text-[#AA530E] focus:placeholder:text-[#AA530E]">
+                                <select id="subProvince" name="subProvince" disabled={APIErrors.subProvinces || isSubmitting} required={true} onChange={OfferForm.handleChange} className="p-4 w-full border disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed border-gray-200 outline-none  focus:border-[#AA530E] focus:text-[#AA530E] focus:placeholder:text-[#AA530E]">
                                     {subProvinces?.map((subProvince) => (
                                         <option key={subProvince.id}>
                                             {subProvince.name}
@@ -125,27 +132,10 @@ export default function OfferButton() {
                                 </select>
                             </div>
 
-                            <div className="flex justify-between items-center p-4 bg-gray-100 ">
-                                <label required={true} className="w-full block" htmlFor="owner">Bina Sahibi Misiniz?</label>
-                                <Switch
-                                    id="owner"
-                                    required
-                                    checked={ownerStatus}
-                                    onChange={OfferForm.handleChange}
-                                    className={`${ownerStatus ? 'bg-[#AA530E]' : 'bg-gray-200'}
-                                    relative inline-flex h-[34px] w-[70px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
-                                >
-                                    <span
-                                    aria-hidden="true"
-                                    className={`${ownerStatus ? 'translate-x-9' : 'translate-x-0'}
-                                        pointer-events-none inline-block h-[30px] w-[30px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
-                                    />
-                                </Switch>
-                            </div>
-
                             <textarea
                                 onChange={OfferForm.handleChange}
-                                className="p-4  w-full border min-h-[150px] resize-none border-gray-200 outline-none  focus:border-[#AA530E] focus:text-[#AA530E] focus:placeholder:text-[#AA530E]" 
+                                disabled={isSubmitting}
+                                className="p-4  w-full border min-h-[150px] resize-none disabled:text-gray-500 border-gray-200 outline-none  focus:border-[#AA530E] focus:text-[#AA530E] focus:placeholder:text-[#AA530E]" 
                                 placeholder="Mesajınız">
                             </textarea>
 

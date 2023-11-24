@@ -33,7 +33,6 @@ const AccordionStyleList = () => {
 }
 
 export default function KentselDonusum() {
-    console.log(require('@images/kentsel-donusum-masthead-photo.jpg'));
     const Props = {
         MastheadContainer: {
             style: {

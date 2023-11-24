@@ -9,7 +9,9 @@
       "@shared/*": ["./components/shared/*"],
       "@layout/*": ["./components/layout/*"],
       "@home/*": ["./components/layout/home/*"],
-      "@about-us/*": ["./components/layout/about-us/*"]
+      "@about-us/*": ["./components/layout/about-us/*"],
+      "@templates/*": ["./templates/*"],
+      "@mailtemplates/*": ["./templates/email/*"],
     }
   }
 }

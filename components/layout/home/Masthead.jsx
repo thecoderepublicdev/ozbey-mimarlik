@@ -8,7 +8,6 @@ import { DM_Sans } from 'next/font/google';
 const DMSans = DM_Sans({subsets: ['latin']});
 
 export default function Masthead({children}) {
-    console.log(require(`@assets/images/firuzkoy/Firüzköy-10.jpg`))
     const Specs = [
         {
             isHidden: true,
