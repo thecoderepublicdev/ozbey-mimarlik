@@ -17,7 +17,7 @@ export default function Index() {
         title='Özbey İnşaat & Mimarlık'
         description='Gerek kentsel dönüşüm projesi olarak gerekse kat karşılığı yaptığımız tüm projelerimizde öncelik olarak sizin hayallerinizi gerçekleştirmek için buradayız.'
       />
-      <Loading/>
+      {/* <Loading/> */}
       <Masthead>
         <MastheadBottom backgroundColor={"bg-slate-100"} titleColor="text-gray-950" descColor="text-gray-950/50" borderClass="after:left-0 after:bottom-0 after:w-14 mb-4 after:h-1 pb-5 after:bg-brand-primary"/>
       </Masthead>

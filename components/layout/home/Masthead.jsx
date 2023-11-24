@@ -81,7 +81,7 @@ export default function Masthead({children}) {
         },
         MastheadContent: {
             className: classNames(
-                'p-10 grid place-content-start place-items-start gap-4 w-full'
+                'p-10 grid place-items-start gap-4 w-full'
             )
         },
         MastheadTitle: {
@@ -103,8 +103,8 @@ export default function Masthead({children}) {
                     %40 peşin ödemeli ve 24 Ay Vade Ödeme Şekli ile Daire Fiyatına Villa Sahibi Olun!
                 </p>
                 <h1 {...Props.MastheadTitle}>Göl Manzaralı & Bahçeli Yaşam <br/> Artık Avcılar’da!</h1>
-                <div className='flex justify-between align-center items-center w-full'>
-                    <div className='grid place-items-start place-content-start grid-cols-2 lg:grid-cols-6 mt-6 gap-2'>
+                <div className='flex justify-between align-center items-center w-full mt-6'>
+                    <div className='grid place-items-start place-content-start grid-cols-2 lg:grid-cols-6 gap-2'>
                         {Specs.map((spec, key) => !spec.isHidden && (
                             <SpecsTag
                                 key={key} 

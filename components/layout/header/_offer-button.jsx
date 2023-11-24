@@ -7,6 +7,7 @@ import axios from "axios";
 
 export default function OfferButton() {
     const [selectedCity, setSelectedCity] = useState(1);
+    const [formIsSubmitted, setFormSubmittedStatus] = useState();
     const [provinces, setProvinces] = useState([
         {id: 0, name: "İl seçiniz"}
     ]);
@@ -66,7 +67,7 @@ export default function OfferButton() {
     
 
     useEffect(function() {
-        console.log("Errors: ", errors)
+        console.log("Errors: ", errors);
     }, [errors]);
 
     useEffect(function() {
@@ -97,6 +98,60 @@ export default function OfferButton() {
         })
     }, [selectedCity]);
 
+    const SubmissionForm = () => {
+        return(
+            <form method="POST" onSubmit={handleSubmit} className="grid gap-4">
+                <div>
+                    <input disabled={isSubmitting} id="fullName" name="fullName" onChange={OfferForm.handleChange} required={true} type="text" placeholder="Adınız & Soyadınız" className="p-4  w-full border border-gray-200 outline-none focus:border-[#AA530E] focus:text-[#AA530E] focus:placeholder:text-[#AA530E]"/>
+                    {errors.fullName && (<span className="text-red-500 mt-2">{errors.fullName}</span>)}
+                </div>
+                <div>
+                    <input disabled={isSubmitting} id="phone" name="phone" onChange={OfferForm.handleChange} required={true} type="tel" placeholder="Telefon Numaranız" className="p-4  w-full border border-gray-200 outline-none focus:border-[#AA530E] focus:text-[#AA530E] focus:placeholder:text-[#AA530E]"/>
+                    {errors.phone && (<span className="text-red-500 mt-2">{errors.phone}</span>)}
+                </div>
+                <div>
+                    <input disabled={isSubmitting} id="email" name="email" onChange={OfferForm.handleChange} required={true} type="email" placeholder="E-Posta Adresiniz" className="p-4  w-full border border-gray-200 outline-none focus:border-[#AA530E] focus:text-[#AA530E] focus:placeholder:text-[#AA530E]"/>
+                    {errors.email && (<span className="text-red-500 mt-2">{errors.email}</span>)}
+                </div>
+                
+                <div className="grid grid-cols-2 gap-4">
+                    <div>
+                        <select id="city" name="city" disabled={APIErrors.provinces || isSubmitting} required={true} onChange={OfferForm.handleChange} className="p-4  w-full border border-gray-200 outline-none disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed  focus:border-[#AA530E] focus:text-[#AA530E] focus:placeholder:text-[#AA530E]">
+                            {provinces?.map((province) => (
+                                <option key={province.id} value={province.id}>
+                                    {province.name}
+                                </option>
+                            ))}
+                        </select>
+                        {errors.city && (<span className="text-red-500 mt-2">{errors.city}</span>)}
+                    </div>
+
+                    <div>
+                        <select id="subProvince" name="subProvince" disabled={APIErrors.subProvinces || isSubmitting} required={true} onChange={OfferForm.handleChange} className="p-4 w-full border disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed border-gray-200 outline-none  focus:border-[#AA530E] focus:text-[#AA530E] focus:placeholder:text-[#AA530E]">
+                            {subProvinces?.map((subProvince) => (
+                                <option key={subProvince.id}>
+                                    {subProvince.name}
+                                </option>
+                            ))}
+                        </select>
+                        {errors.subProvince && (<span className="text-red-500 mt-2">{errors.subProvince}</span>)}
+                    </div>
+                </div>
+
+                <textarea
+                    onChange={OfferForm.handleChange}
+                    disabled={isSubmitting}
+                    className="p-4  w-full border min-h-[150px] resize-none disabled:text-gray-500 border-gray-200 outline-none  focus:border-[#AA530E] focus:text-[#AA530E] focus:placeholder:text-[#AA530E]" 
+                    placeholder="Mesajınız">
+                </textarea>
+
+                <button type="submit" className='animate__animated group p-4 text-center transition-all ease-in-out bg-[#AA530E] hover:bg-black  gap-4 text-white'>
+                    {isSubmitting ? 'Lütfen bekleyin' : 'Gönder'}
+                </button>
+            </form>
+        )
+    }
+
     return(
         <Modal {...Props.Modal}>
             <Modal.Button {...Props.ModalTrigger}>
@@ -109,45 +164,7 @@ export default function OfferButton() {
             <Modal.Content>
                 <div className="w-full grid grid-cols-1">
                     <div>
-                        <form method="POST" onSubmit={handleSubmit} className="grid gap-4">
-                            <input disabled={isSubmitting} id="fullName" name="fullName" onChange={OfferForm.handleChange} required={true} type="text" placeholder="Adınız & Soyadınız" className="p-4  w-full border border-gray-200 outline-none focus:border-[#AA530E] focus:text-[#AA530E] focus:placeholder:text-[#AA530E]"/>
-                            <input disabled={isSubmitting} id="phone" name="phone" onChange={OfferForm.handleChange} required={true} type="tel" placeholder="Telefon Numaranız" className="p-4  w-full border border-gray-200 outline-none focus:border-[#AA530E] focus:text-[#AA530E] focus:placeholder:text-[#AA530E]"/>
-                            <input disabled={isSubmitting} id="email" name="email" onChange={OfferForm.handleChange} required={true} type="email" placeholder="E-Posta Adresiniz" className="p-4  w-full border border-gray-200 outline-none focus:border-[#AA530E] focus:text-[#AA530E] focus:placeholder:text-[#AA530E]"/>
-                            
-                            <div className="grid grid-cols-2 gap-4">
-                                <select id="city" name="city" disabled={APIErrors.provinces || isSubmitting} required={true} onChange={OfferForm.handleChange} className="p-4  w-full border border-gray-200 outline-none disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed  focus:border-[#AA530E] focus:text-[#AA530E] focus:placeholder:text-[#AA530E]">
-                                    {provinces?.map((province) => (
-                                        <option key={province.id} value={province.id}>
-                                            {province.name}
-                                        </option>
-                                    ))}
-                                </select>
-
-                                <select id="subProvince" name="subProvince" disabled={APIErrors.subProvinces || isSubmitting} required={true} onChange={OfferForm.handleChange} className="p-4 w-full border disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed border-gray-200 outline-none  focus:border-[#AA530E] focus:text-[#AA530E] focus:placeholder:text-[#AA530E]">
-                                    {subProvinces?.map((subProvince) => (
-                                        <option key={subProvince.id}>
-                                            {subProvince.name}
-                                        </option>
-                                    ))}
-                                </select>
-                            </div>
-
-                            <textarea
-                                onChange={OfferForm.handleChange}
-                                disabled={isSubmitting}
-                                className="p-4  w-full border min-h-[150px] resize-none disabled:text-gray-500 border-gray-200 outline-none  focus:border-[#AA530E] focus:text-[#AA530E] focus:placeholder:text-[#AA530E]" 
-                                placeholder="Mesajınız">
-                            </textarea>
-
-                            <button type="submit" className={classNames(
-                                'animate__animated group p-4 text-center transition-all ease-in-out bg-[#AA530E] hover:bg-black  gap-4 text-white', 
-                                {
-                                    'animate__shakeX': values.length < 0,
-                                }
-                            )}>
-                                {isSubmitting ? 'Lütfen bekleyin' : 'Gönder'}
-                            </button>
-                        </form>
+                        <SubmissionForm/>
                     </div>
                 </div>
             </Modal.Content>

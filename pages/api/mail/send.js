@@ -5,7 +5,6 @@ import { render } from '@react-email/render';
 export default async function (req, res) {    
     const { fullName, message, city, phone, subProvince, owner, email } = req.body;
 
-
     const RenderedEmailContent = render(
         <OfferMailTemplate 
             fullName={fullName} 
@@ -38,7 +37,7 @@ export default async function (req, res) {
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
             console.error(error);
-            res.status(500).json({ error: 'Internal Server Error', errorDetails: error });
+            res.status(500).json({ success: false, error: 'Internal Server Error', errorDetails: error });
         } else {
             console.log('Email sent: ' + info.response);
             res.status(200).json({ success: true });
