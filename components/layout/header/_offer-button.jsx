@@ -121,7 +121,7 @@ export default function OfferButton() {
                 subProvince: Yup.string().required('İlçe bilgisi zorunludur'),
             }),
             handleSubmit: ({e}) => {
-                console.log("handleSubmit", ...e);
+                console.log("handleSubmit", ...e);  
             },
             handleChange: ({e}) => {
                 console.log(e);

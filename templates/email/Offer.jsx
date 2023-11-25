@@ -86,6 +86,6 @@ export default function OfferMailTemplate({fullName, phone, mail, city, subProvi
                 </Container>
             </Body>
         </Tailwind>
-        </Html>
+        </Html> 
     );
 };
