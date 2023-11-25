@@ -64,11 +64,6 @@ export default function OfferButton() {
     });
 
     const { values, errors, touched, handleSubmit, isSubmitting } = OfferForm;
-    
-
-    useEffect(function() {
-        console.log("Errors: ", errors);
-    }, [errors]);
 
     useEffect(function() {
         fetch('https://turkiyeapi.herokuapp.com/api/v1/provinces')
