@@ -64,20 +64,20 @@ export default function OfferMailTemplate({fullName, phone, mail, city, subProvi
                             <Button
                                 pX={20}
                                 pY={12}
-                                className="bg-[#000000] rounded text-white text-[12px] font-semibold no-underline text-center"
+                                className="bg-[#000000] rounded text-white text-[12px] p-10 font-semibold no-underline text-center"
                                 href={`tel:${phone}`}
                             >
                                 Ara
                             </Button>
 
-                        <Button
-                            pX={20}
-                            pY={12}
-                            className="bg-[#000000] rounded text-white text-[12px] font-semibold no-underline text-center"
-                            href={`mailto:${mail}`}
-                        >
-                            Yanıt Gönder
-                        </Button>
+                            <Button
+                                pX={20}
+                                pY={12}
+                                className="bg-[#000000] rounded text-white text-[12px] p-10 font-semibold no-underline text-center"
+                                href={`mailto:${mail}`}
+                            >
+                                Yanıt Gönder
+                            </Button>
                     </Section>
                     <Hr className="border border-solid border-[#eaeaea] my-[26px] mx-0 w-full" />
                     <Text className="text-[#666666] text-[12px] leading-[24px]">

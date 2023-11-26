@@ -1,28 +1,32 @@
-import { useEffect, useState } from "react";
+import { createElement, useEffect, useState } from "react";
 import { useFormik } from "formik";
 import classNames from "classnames";
 import * as Yup from 'yup';
 import Modal from '@shared/Modal';
 import axios from "axios";
 
-const FormResultState = ({type}) => {
+const FormResultState = ({isSuccess}) => {
     const Props = {
         Container: {
-            className: classNames('grid gap-4 place-content-center place-items-center w-full')
+            className: classNames(
+                'grid gap-4 place-content-center place-items-center border-2 rounded-lg border-gray-100 w-full text-center p-6', {
+
+                }
+            )
         },
         Icon: {
             className: classNames(
                 'block rounded-full w-16 h-16 p-4 grid place-content-center place-items-center',
                 {
-                    'bg-red-100 text-red-500': type === 'error',
-                    'bg-green-100 text-green-500': type === 'success'
+                    'bg-red-100 text-red-500': !isSuccess,
+                    'bg-green-100 text-green-500': isSuccess
                 }
             )
         },
         Title: {
             className: classNames('font-bold text-xl', {
-                'text-red-500': type === 'error',
-                'text-green-500': type === 'success',
+                'text-red-500': !isSuccess,
+                'text-green-500': isSuccess,
             })
         }
     }
@@ -31,17 +35,17 @@ const FormResultState = ({type}) => {
         <div {...Props.Container}>
             <div {...Props.Icon}>
                 <span className="material-symbols-outlined">
-                    {type === 'error' && 'error'}
-                    {type === 'success' && 'verified'}
+                    {!isSuccess && 'error'}
+                    {isSuccess && 'verified'}
                 </span>
             </div>
             <span {...Props.Title}>
-                {type === 'error' && 'Bir hata oluştu!'}
-                {type === 'success' && 'Bizimle iletişime geçtiğiniz için teşekkürler'}
+                {!isSuccess && 'Bir hata oluştu!'}
+                {isSuccess && 'Bizimle iletişime geçtiğiniz için teşekkürler'}
             </span>
             <p className="text-gray-500 text-center">
-                {type === 'error' && 'Form gönderilirken bir hata oluştu, lütfen daha sonra tekrar dener misiniz?'}
-                {type === 'success' && 'Kentsel Dönüşüme olan ilginiz için teşekkür ederiz, ekibimiz 48 saat içerisinde sizlere geri dönüş yapacaktır'}
+                {!isSuccess && 'Form gönderilirken bir hata oluştu, lütfen daha sonra tekrar dener misiniz?'}
+                {isSuccess && 'Kentsel Dönüşüme olan ilginiz için teşekkür ederiz, ekibimiz 48 saat içerisinde sizlere geri dönüş yapacaktır'}
             </p>
         </div>
     )       
@@ -50,6 +54,7 @@ const FormResultState = ({type}) => {
 export default function OfferButton() {
     const [selectedCity, setSelectedCity] = useState(1);
     const [formIsSubmitted, setFormSubmittedStatus] = useState();
+    const [APIResponseSuccess, setAPIResponseStatus] = useState()
     const [provinces, setProvinces] = useState([
         {id: 0, name: "İl seçiniz"}
     ]);
@@ -62,6 +67,8 @@ export default function OfferButton() {
         provinces: false,
         subProvinces: false,
     })
+
+    console.log("type APIResponseSuccess", typeof APIResponseSuccess)
 
     const Props = {
         Modal: {
@@ -100,17 +107,13 @@ export default function OfferButton() {
             
             await axios.post('/api/mail/send', values).then(res => {
                 console.log("Offer Form Sended", res.data)
+                setAPIResponseStatus(res.data.success);
             })
         }
     });
 
     const { values, errors, touched, handleSubmit, isSubmitting } = OfferForm;
     
-
-    useEffect(function() {
-        console.log("Errors: ", errors);
-    }, [errors]);
-
     useEffect(function() {
         fetch('https://turkiyeapi.herokuapp.com/api/v1/provinces')
         .then((response) => response.json())
@@ -235,12 +238,14 @@ export default function OfferButton() {
                 <span className="material-symbols-outlined">arrow_right_alt</span>
             </Modal.Button>
 
-            <Modal.Title>Kentsel Dönüşüm Talebi Oluştur</Modal.Title>
+            <Modal.Title>
+                Kentsel Dönüşüm Talebi Oluştur
+            </Modal.Title>
 
             <Modal.Content>
                 <div className="w-full grid grid-cols-1">
                     <div>
-                        <FormResultState type="success"/>
+                        {typeof APIResponseSuccess === 'boolean' ? <FormResultState isSuccess={APIResponseSuccess}/> : <SubmissionForm/>}
                     </div>
                 </div>
             </Modal.Content>
