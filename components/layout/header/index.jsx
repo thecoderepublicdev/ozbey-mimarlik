@@ -20,7 +20,7 @@ export default function Header({variant = "default"}) {
     const ProviderValues = {
         currentPagePath: router.asPath
     }
-    
+
     const Props = {
         Header: {
             className: classNames(
@@ -30,7 +30,7 @@ export default function Header({variant = "default"}) {
             )
         },
         HeaderInner: {
-            className: "hidden lg:flex justify-between items-center px-4 py-2"
+            className: "container max-w-screen-2xl mx-auto hidden lg:flex justify-between items-center px-4 py-2"
         }
     }
 

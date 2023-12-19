@@ -7,8 +7,8 @@ const DMSans = DM_Sans({subsets: ['latin']});
 
 export default function Testimonials() {
     return(
-        <section className="bg-brand-secondary/10 min-h-screen grid place-items-center">
-            <div className="py-8 px-4 mx-auto max-w-screen-2xl lg:py-16 lg:px-6">
+        <section className="bg-brand-secondary/10 min-h-screen grid place-items-center container max-w-screen-2xl mx-auto">
+            <div className="py-8 px-8 mx-auto max-w-screen-2xl lg:py-16 lg:px-6">
                 <div>
                     <h2 className={classNames(
                         "mb-4 text-4xl tracking-tight font-bold text-brand-primary",

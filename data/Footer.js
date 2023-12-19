@@ -13,7 +13,27 @@ const FooterData = {
             title: "Özbey Şirketler Grubu",
             items: [
                 {
-                    label: "Kentsel Dönüşüm",
+                    label: "Gloria Jean's Avcılar",
+                    link: "/hizmetlerimiz/kentsel-donusum" 
+                },
+                {
+                    label: "Gloria Jean's Cennet",
+                    link: "/hizmetlerimiz/kentsel-donusum" 
+                },
+                {
+                    label: "Gloria Jean's Aydın Üniversitesi",
+                    link: "/hizmetlerimiz/kentsel-donusum" 
+                },
+                {
+                    label: "Özbey Bilişim",
+                    link: "/hizmetlerimiz/kentsel-donusum" 
+                },
+                {
+                    label: "Özbey Dekarasyon",
+                    link: "/hizmetlerimiz/kentsel-donusum" 
+                },
+                {
+                    label: "Özel Parlayan Yıldız Akademi Anaokulu",
                     link: "/hizmetlerimiz/kentsel-donusum" 
                 }
             ]

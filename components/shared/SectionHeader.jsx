@@ -23,7 +23,7 @@ function SubTitle({children}) {
 }
 function CallToAction({link, icon, children}) {
     return(
-        <a href={link} className="py-4 px-10 text-lg hover:bg-brand-primary hover:text-white text-brand-primary border-2 border-brand-primary flex gap-4 items-center align-center justify-center">
+        <a href={link} className="transition-all ease-in-out cursor-pointer py-4 px-10 text-lg hover:bg-brand-primary hover:text-white text-brand-primary border-2 border-brand-primary flex gap-4 items-center align-center justify-center">
             <label>{children}</label>
             {icon && <span className="material-symbols-outlined">{icon}</span>}
         </a>

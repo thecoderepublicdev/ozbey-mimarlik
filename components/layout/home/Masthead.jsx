@@ -62,8 +62,8 @@ export default function Masthead({children}) {
         Swiper: {
             speed: 4000,
             virtual: false,
-            slidesPerView: 5,
-            spaceBetween: 16,
+            slidesPerView: 3,
+            spaceBetween: 8,
             loop: true,
             autoplay: {
                 delay: 1,
@@ -76,7 +76,7 @@ export default function Masthead({children}) {
         },
         MastheadContainer: {
             className: classNames(
-                "p-0 mb-10"
+                "p-0 mb-10 mt-10 bg-gray-100 container max-w-screen-2xl mx-auto"
             )
         },
         MastheadContent: {
@@ -115,7 +115,7 @@ export default function Masthead({children}) {
                         ))}
                     </div>
 
-                    <a href='#' className='border rounded-full px-4 py-2'>
+                    <a href='#' className='px-8 py-4 bg-black text-white rounded-full hover:shadow-xl transition ease-in-out'>
                         Detaylı Bilgi Al
                     </a>
                 </div>
@@ -130,7 +130,7 @@ export default function Masthead({children}) {
                                     loading='lazy'
                                     placeholder="blur"
                                     blurDataURL={require(`@assets/images/firuzkoy/Firüzköy-${index + 1}.jpg`).blurDataURL}
-                                    style={{ width: '600', height: '500px', objectFit: 'cover' }}
+                                    style={{ width: '800', height: '500px', objectFit: 'cover' }}
                                     className='group-hover:!w-full'
                                     width="600"
                                     height="500"

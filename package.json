@@ -5,13 +5,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "rm -rf .next && next build",
     "start": "next start",
     "lint": "next lint",
     "deploy": "firebase deploy --only functions,hosting"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
+    "@heroicons/react": "^2.1.1",
     "@react-email/button": "0.0.11",
     "@react-email/column": "0.0.8",
     "@react-email/components": "0.0.11",
