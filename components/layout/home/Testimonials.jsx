@@ -7,8 +7,8 @@ const DMSans = DM_Sans({subsets: ['latin']});
 
 export default function Testimonials() {
     return(
-        <section className="bg-brand-secondary/10 min-h-screen grid place-items-center container max-w-screen-2xl mx-auto">
-            <div className="py-8 px-8 mx-auto max-w-screen-2xl lg:py-16 lg:px-6">
+        <section className="min-h-screen grid place-items-center container max-w-screen-2xl mx-auto">
+            <div className="py-4 px-8 mx-auto max-w-screen-2xl lg:py-4 lg:px-6">
                 <div>
                     <h2 className={classNames(
                         "mb-4 text-4xl tracking-tight font-bold text-brand-primary",
@@ -21,7 +21,7 @@ export default function Testimonials() {
                 </div> 
                 <div className="grid gap-4 lg:grid-cols-3">
                     {TestimonialsData.map((person, id) => (
-                        <figure key={id} className="hover:drop-shadow-2xl transition-all ease-in-out flex flex-col justify-between items-start p-8 bg-white md:p-12">
+                        <figure key={id} className="border hover:drop-shadow-2xl transition-all ease-in-out flex flex-col justify-between items-start p-8 bg-white md:p-12">
                             <blockquote className="mx-auto mb-8 max-w-2xl text-gray-500">
                                 <p className={classNames(
                                     "my-4", DMSans.className

@@ -2,6 +2,7 @@
   "compilerOptions": {
     "paths": {
       "@assets/*": ["./assets/*"],
+      "@hooks/*": ["./hooks/*"],
       "@images/*": ["./assets/images/*"],
       "@icons/*": ["./components/shared/icons/*"],
       "@data/*": ["./data/*"],

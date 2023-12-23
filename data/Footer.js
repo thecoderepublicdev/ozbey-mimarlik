@@ -54,23 +54,6 @@ const FooterData = {
                     link: "/projelerimiz/1" 
                 }
             ]
-        },
-        {
-            title: "Sosyal Medya",
-            items: [
-                {
-                    label: "Facebook",
-                    link: "#" 
-                },
-                {
-                    label: "X",
-                    link: "#" 
-                },
-                {
-                    label: "Instagram",
-                    link: "#" 
-                }
-            ]
         }
     ]
 }

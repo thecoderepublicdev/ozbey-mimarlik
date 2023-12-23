@@ -5,27 +5,31 @@ import { createContext, useContext, useState } from "react";
 import MobileMenu from "./_mobile-menu";
 import classNames from "classnames";
 import { useRouter } from "next/router";
+import { DM_Sans } from "next/font/google";
 
-
-const HeaderContext = createContext(null);
+const HeaderContext = createContext();
+const HeaderFont = DM_Sans({subsets: ['latin']})
 
 export const useHeader = () => {
     return useContext(HeaderContext)
 };
 
-export default function Header({variant = "default"}) {
+export default function Header({variant}) {
     const [isMobileMenuOpen, setMobileMenuStatus] = useState(false);
     const router = useRouter();
     
     const ProviderValues = {
-        currentPagePath: router.asPath
+        currentPagePath: router.asPath,
+        variant: variant,
+        primaryFont: HeaderFont.className
     }
 
     const Props = {
         Header: {
             className: classNames(
-                {
-                    "w-full sticky top-0 bg-white/50 backdrop-blur-md z-10": true
+                HeaderFont.className, {
+                    "w-full sticky top-0 bg-white/50 backdrop-blur-md z-10": variant === 'default',
+                    "absolute z-10 w-full text-white": variant === 'transparent'
                 }
             )
         },
@@ -35,7 +39,7 @@ export default function Header({variant = "default"}) {
     }
 
     return(
-        <HeaderContext.Provider value={{variant: variant}}>
+        <HeaderContext.Provider value={ProviderValues}>
             <header {...Props.Header}>
                 <div {...Props.HeaderInner}>
                     <Logo/>

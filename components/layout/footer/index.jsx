@@ -13,7 +13,7 @@ export default function Footer() {
         },
         FooterInner: {
             className: classNames(
-                'max-w-screen-xl mx-auto grid grid-cols-5 gap-4 min-h-[300px] py-12'
+                'max-w-screen-2xl mx-auto grid grid-cols-1 p-6 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 gap-4 min-h-[300px] py-12'
             )
         }
     }
@@ -41,7 +41,17 @@ export default function Footer() {
                     </div>
                 ))}
             </div>
-            <SocialMedia name="Instagram" link="#"/>
+            <div className="max-w-screen-2xl mx-auto flex align-center flex-col xl:flex-row lg:flex-row 2xl:flex-row gap-4 justify-between items-center border-t border-white/50 py-6">
+                <div className="flex gap-2 items-center content-center justify-center align-center">
+                    <SocialMedia name="Instagram" link="#"/>
+                    <SocialMedia name="Facebook" link="#"/>
+                    <SocialMedia name="X" link="#"/>
+                </div>
+
+                <div className="text-white/50">
+                    <label><a href="https://thecoderepublic.com.tr/?utm_source=ozbeymimarlık">The Code Republic</a> tarafından geliştirildi</label>
+                </div>
+            </div>
         </footer>
     )
 }

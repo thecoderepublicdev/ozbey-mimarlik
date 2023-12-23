@@ -6,30 +6,36 @@ import classNames from "classnames";
 import Modal from "@components/shared/Modal";
 import HowToApplyUrbanTransformation from "@data/HowToApplyUrbanTransformation";
 
-const AccordionStyleList = () => {
-    KentselDonusumRSS.map((faq, index) => (
-        <Disclosure as="div" key={index} className="border-b border-gray-400 transition-all ease-in-out w-full">
-            {({open}) => (
-                <React.Fragment>
-                    <Disclosure.Button
-                        as="button"
-                        className={classNames(
-                            'p-4 flex justify-between items-center w-full'
-                        )}
-                    >
-                        <label>{faq.question}</label>
-                        <span className={classNames(
-                            'material-symbols-outlined transition-all ease-out',
-                            open && 'rotate-180'
-                        )}>expand_more</span>
-                    </Disclosure.Button>
-                    <Disclosure.Panel className="text-gray-500 p-4">
-                        {faq.answer}
-                    </Disclosure.Panel>
-                </React.Fragment>
-            )}
-        </Disclosure>
-    ))
+const FAQ = () => {
+    return(
+        <React.Fragment as="div">
+            {KentselDonusumRSS.map((faq, index) => (
+                <Disclosure as="div" key={index} className="border-b border-gray-200 transition-all ease-in-out w-full">
+                    {({open}) => (
+                        <React.Fragment>
+                            <Disclosure.Button
+                                as="button"
+                                className={classNames(
+                                    'p-4 flex justify-between items-center w-full'
+                                )}
+                            >
+                                <label className={classNames({
+                                    'text-brand-primary': open,
+                                })}>{faq.question}</label>
+                                <span className={classNames(
+                                    'material-symbols-outlined transition-all ease-out',
+                                    open && 'rotate-180'
+                                )}>expand_more</span>
+                            </Disclosure.Button>
+                            <Disclosure.Panel className="text-gray-500 p-4">
+                                {faq.answer}
+                            </Disclosure.Panel>
+                        </React.Fragment>
+                    )}
+                </Disclosure>
+            ))}
+        </React.Fragment>
+    )
 }
 
 export default function KentselDonusum() {
@@ -70,6 +76,11 @@ export default function KentselDonusum() {
                 'py-8 px-4 mx-auto max-w-screen-2xl lg:py-16 lg:px-6 grid gap-6'
             )
         },
+        ContentSection: {
+            className: classNames(
+                'py-8 px-4 mx-auto max-w-screen-2xl lg:py-16 lg:px-6 grid gap-6'
+            )
+        },
         FAQSectionTitle: {
             className: classNames(
                 'text-4xl font-bold text-brand-primary'
@@ -99,7 +110,7 @@ export default function KentselDonusum() {
             </div>
 
             <div {...Props.FAQSection}>
-                <div {...Props.FAQSectionInner}>
+                <div {...Props.ContentSection}>
                     <div {...Props.FAQSectionInnerHeader}>
                         <label className="text-black/50 text-lg">Deprem öldürmez. Bina öldürür.</label>
                         <h2 {...Props.FAQSectionTitle}>Kentsel Dönüşümden Nasıl Faydalanabilirim?</h2>
@@ -117,18 +128,13 @@ export default function KentselDonusum() {
             </div>
             
             <div {...Props.FAQSection}>
-                <div {...Props.FAQSectionInner}>
-                    <div {...Props.FAQSectionInnerHeader}>
-                        <h2 {...Props.FAQSectionTitle}>Kentsel Dönüşüm Hakkında Sıkça Sorulan Sorular</h2>
+                <div className="py-8 px-4 mx-auto max-w-screen-2xl w-full lg:py-16 lg:px-6 grid grid-cols-1 gap-6">
+                    <div className="grid gap-4 place-content-center place-items-center">
+                        <label className="text-gray-500 uppercase">Kentsel Dönüşüm Hakkında</label>
+                        <h2 {...Props.FAQSectionTitle}>Sıkça Sorulan Sorular</h2>
                     </div>
-
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-6">
-                        {KentselDonusumRSS.map((faq, index) => (
-                            <div key={index} className="flex flex-col gap-2 p-6 bg-brand-primary/5">
-                                <h3 className="font-bold text-2xl">{faq.question}</h3>
-                                <p className="text-black/50 text-lg">{faq.answer}</p>
-                            </div>
-                        ))}
+                    <div>
+                        <FAQ/>
                     </div>
                 </div>
             </div>

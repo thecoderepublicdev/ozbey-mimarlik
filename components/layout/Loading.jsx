@@ -46,6 +46,8 @@ const Loading = () => {
 
       return () => clearTimeout(timeoutIds[index]);
     });
+
+    return;
   }, [letters]);
 
   return (

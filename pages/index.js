@@ -7,6 +7,7 @@ import Masthead from '@components/layout/home/Masthead';
 import Companies from '@components/shared/Companies';
 import MastheadBottom from '@components/layout/home/MastheadBottom';
 import Loading from '@components/layout/Loading';
+import MastheadFullScreen from '@components/layout/home/MastheadFullScreen';
 
 export default function Index() {
   const router = useRouter();
@@ -18,9 +19,8 @@ export default function Index() {
         description='Gerek kentsel dönüşüm projesi olarak gerekse kat karşılığı yaptığımız tüm projelerimizde öncelik olarak sizin hayallerinizi gerçekleştirmek için buradayız.'
       />
       {/* <Loading/> */}
-      <Masthead>
-        <MastheadBottom backgroundColor={"bg-white"} titleColor="text-gray-950" descColor="text-gray-950/50" borderClass="after:left-0 after:bottom-0 after:w-14 mb-4 after:h-1 pb-5 after:bg-brand-primary"/>
-      </Masthead>
+      <MastheadFullScreen/>
+      <MastheadBottom backgroundColor="bg-gray-50" titleColor="bg-brand-primary"/>
       <Companies/>
       <Testimonials/>
     </Layout>

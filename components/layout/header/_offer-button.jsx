@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import Modal from '@shared/Modal';
 import axios from "axios";
 import ContactForm from "../../../forms/ContactForm";
+import { useHeader } from ".";
 
 const FormResultState = ({isSuccess}) => {
     const Props = {
@@ -53,30 +54,19 @@ const FormResultState = ({isSuccess}) => {
 }
 
 export default function OfferButton() {
-    const [selectedCity, setSelectedCity] = useState(1);
-    const [formIsSubmitted, setFormSubmittedStatus] = useState();
-    const [APIResponseSuccess, setAPIResponseStatus] = useState()
-    const [provinces, setProvinces] = useState([
-        {id: 0, name: "İl seçiniz"}
-    ]);
-    const [subProvinces, setSubProvinces] = useState([
-        {id: 0, name: "İlçe seçiniz"}
-    ])
-    const [ownerStatus, setOwnerStatus] = useState(false);
-
-    const [APIErrors] = useState({
-        provinces: false,
-        subProvinces: false,
-    })
-
-    console.log("type APIResponseSuccess", typeof APIResponseSuccess)
+    const {variant} = useHeader();
 
     const Props = {
         Modal: {
             title: "Kentsel Dönüşüm Başvurusu Oluştur"
         },
         ModalTrigger: {
-            className: "px-6 py-4 text-sm transition-all ease-in-out bg-brand-primary hover:bg-black flex items-center gap-4 text-white h-full"
+            className: classNames(
+                "px-6 py-4 text-sm transition-all ease-in-out flex items-center gap-4 h-full", {
+                    "bg-brand-primary hover:bg-black text-white": variant === 'default',
+                    "bg-transparent backdrop-blur-md rounded-full font-bold hover:bg-black text-white": variant === 'transparent',
+                }
+            )
         } 
     }
     
