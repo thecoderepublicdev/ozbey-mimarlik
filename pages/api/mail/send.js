@@ -5,7 +5,8 @@ import { render } from '@react-email/render';
 async function MailSendHandler(req, res) {    
     if(req.method === 'POST') {
         const { formType } = req.body;
-        const { firstName, lastName, message, phone, email } = req.body.fields;
+        const { firstName, lastName, message, phone, email } = req.body;
+        let fullName = `${firstName} ${lastName}`;
     
         const RenderedEmailContent = await render(
             <ContactFormTemplate 
