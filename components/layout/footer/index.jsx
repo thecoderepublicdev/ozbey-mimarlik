@@ -26,7 +26,7 @@ export default function Footer() {
                 </div>
                 {FooterData.Blocks.map((block, id) => (
                     <div key={id}>
-                        <label className="font-bold">{block.title}</label>
+                        <label className="font-bold text-xl">{block.title}</label>
 
                         {block.items.map((item, id) => (
                             <ul key={id}>

@@ -42,7 +42,7 @@ export default function KentselDonusum() {
     const Props = {
         MastheadContainer: {
             style: {
-                backgroundImage: `url('${require('@images/kentsel-donusum-masthead-photo.jpg').default.src}')`,
+                backgroundImage: `url('/assets/images/firuzkoy/Firüzköy-1.webp')`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',

@@ -1,10 +1,9 @@
 import classNames from "classnames"
 import { createElement } from "react";
+import Title from "./Title";
 
-function Title({level, children}) {
-    return createElement(level, {
-        className: 'text-4xl font-bold text-brand-primary',
-    }, children);
+function _Title({level, children}) {
+    return <Title level={level}>{children}</Title>
 }
 
 function Description({children}) {
@@ -23,19 +22,19 @@ function SubTitle({children}) {
 }
 function CallToAction({link, icon, children}) {
     return(
-        <a href={link} className="transition-all ease-in-out cursor-pointer py-4 px-10 text-lg hover:bg-brand-primary hover:text-white text-brand-primary border-2 border-brand-primary flex gap-4 items-center align-center justify-center">
+        <a href={link} className="rounded transition-all ease-in-out cursor-pointer py-4 px-10 text-lg hover:bg-brand-primary hover:text-white text-brand-primary border-2 border-brand-primary flex gap-4 items-center align-center justify-center">
             <label>{children}</label>
             {icon && <span className="material-symbols-outlined">{icon}</span>}
         </a>
     )
 }
 
-export default function SectionHeader({children}) {
+function SectionHeader({children}) {
     const Props = {
         Container: {
             id: 'SectionHeader',
             className: classNames(
-                'flex justify-between items-center align-center content-center'
+                'flex flex-col justify-start lg:flex-row xl:flex-row 2xl:flex-row lg:justify-between xl:justify-between 2xl:justify-between items-center align-center content-center'
             )
         },
         ContainerContext: {
@@ -46,7 +45,7 @@ export default function SectionHeader({children}) {
     }
 
     const Components = {
-        Title: children.filter(t => t.type === Title),
+        Title: children.filter(t => t.type === _Title),
         SubTitle: children.filter(t => t.type === SubTitle),
         Description: children.filter(t => t.type === Description),
         CallToAction: children.filter(t => t.type === CallToAction),
@@ -55,7 +54,7 @@ export default function SectionHeader({children}) {
     return(
         <div {...Props.Container}>
             <div {...Props.ContainerContext}>
-                {Components.SubTitle}
+                {Components.SubTitle ?? Components.SubTitle}
                 {Components.Title}
                 {Components.Description}
             </div>
@@ -65,7 +64,9 @@ export default function SectionHeader({children}) {
     )
 }
 
-SectionHeader.Title = Title;
+SectionHeader.Title = _Title;
 SectionHeader.Description = Description;
 SectionHeader.SubTitle = SubTitle;
 SectionHeader.CallToAction = CallToAction;
+
+export default SectionHeader

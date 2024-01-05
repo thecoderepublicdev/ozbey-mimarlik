@@ -3,14 +3,20 @@ import Footer from "@components/layout/footer"
 import { useRouter } from "next/router"
 
 
-export default function Layout({children}) {
+export default function Layout({showLoading, children}) {
     const router = useRouter();
 
     return(
         <main id="layout">
-            <Header variant={router.asPath === '/' ? 'transparent' : 'default'}/>
-                {children}
-            <Footer/>
+            {showLoading ? (
+                <h1>Yükleniyor</h1>
+            ) : (
+                <>
+                    <Header variant={'default'}/>
+                        {children}
+                    <Footer/>
+                </>
+            )}
         </main>
     )
 }

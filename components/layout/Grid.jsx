@@ -2,6 +2,7 @@ import classNames from "classnames"
 import { createElement } from "react"
 
 export default function Grid({
+    ref,
     cols, 
     gap, 
     desktop,
@@ -9,16 +10,15 @@ export default function Grid({
     gapHorizontal, 
     gapVertical, 
     children
-}) {    
+}) {
     return createElement('div', {
+        ref: ref ?? ref,
         className: classNames(
             `grid`, {
-                [``]: (mobile),
-                [`grid-cols-${cols?.toString()}`]: (cols),
-                [`gap-${gap?.toString()}`]: (gap),
-                [`gap-x-${gapHorizontal?.toString()}`]: (gapHorizontal),
-                [`gap-y-${gapVertical?.toString()}`]: (gapVertical),
-                [`lg:grid-cols${desktop?.toString()} xl:grid-cols${desktop?.toString()} 2xl:grid-cols${desktop?.toString()}`]: (desktop),
+                [`gap-${gap?.toString()}`]: typeof gap === 'number',
+                [`gap-x-${gapHorizontal?.toString()}`]: typeof gapHorizontal === 'number',
+                [`gap-y-${gapVertical?.toString()}`]: typeof gapVertical === 'number',
+                [`grid-cols-${cols?.toString()} lg:grid-cols-${desktop?.toString()} xl:grid-cols-${desktop?.toString()} 2xl:grid-cols-${desktop?.toString()}`]: typeof desktop === 'number',
             })
     }, children)
 }

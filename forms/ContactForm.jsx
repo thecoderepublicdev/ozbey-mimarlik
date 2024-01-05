@@ -6,6 +6,7 @@ import classNames from "classnames";
 import axios from 'axios';
 import { useState } from 'react';
 import Alert from '@components/shared/Alert';
+import sendMail from '@hooks/sendMail';
 
 function ContactFormFields({ errors, status, touched, isSubmitting, setFieldValue }) {
     const Fields = [
@@ -48,7 +49,7 @@ function ContactFormFields({ errors, status, touched, isSubmitting, setFieldValu
         {
             customRender: true,
             customRenderContent: (
-                <React.Fragment>
+                <React.Fragment key={555}>
                     <Field
                         id="message"
                         name="message"
@@ -56,7 +57,7 @@ function ContactFormFields({ errors, status, touched, isSubmitting, setFieldValu
                         disabled={isSubmitting}
                         placeholder="Mesajınız"
                         className={classNames(
-                            'p-4 rounded-xl border-2 bg-gray-100 !border-transparent outline-none focus:border-brand-primary disabled:cursor-not-allowed disabled:opacity-50 resize-none max-h-[400px] focus:text-brand-primary', {
+                            'rounded p-4 border-2 bg-gray-100 !border-transparent outline-none focus:border-brand-primary disabled:cursor-not-allowed disabled:opacity-50 resize-none max-h-[400px] focus:text-brand-primary', {
                                 '!border-red-500 bg-red-50 text-red-500': touched.message && errors.message
                             }
                         )}
@@ -78,7 +79,7 @@ function ContactFormFields({ errors, status, touched, isSubmitting, setFieldValu
                         disabled={isSubmitting}
                         placeholder={field.placeholder}
                         className={classNames(
-                            'p-4 rounded-xl border-2 bg-gray-100 outline-none focus:border-brand-primary disabled:cursor-not-allowed disabled:opacity-50 focus:text-brand-primary', {
+                            'rounded p-4 border-2 bg-gray-100 outline-none focus:border-brand-primary disabled:cursor-not-allowed disabled:opacity-50 focus:text-brand-primary', {
                                 '!border-red-500 bg-red-50 text-red-500': field.states.touch && field.states.error
                             }
                         )}
@@ -87,14 +88,14 @@ function ContactFormFields({ errors, status, touched, isSubmitting, setFieldValu
                </div> 
             ) : field.customRenderContent)}
 
-            <button type="submit" className="p-4 rounded-xl bg-brand-primary text-center font-bold text-lg text-white disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:opacity-50" disabled={isSubmitting}>
+            <button type="submit" className="rounded p-4 bg-brand-primary text-center font-bold text-lg text-white disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:opacity-50" disabled={isSubmitting}>
                 {isSubmitting ? 'Lütfen Bekleyin...' : 'Gönder'}
             </button>
         </Form>
     )
 }
 
-export default function ContactForm({subject}) {
+export default function ContactForm({type}) {
     const [IF_FORM_SENDED, setFormSentStatus] = useState();
     
     const Props = {
@@ -115,26 +116,16 @@ export default function ContactForm({subject}) {
             }),
             onSubmit: async (values, { setSubmitting, resetForm }) => {
                 setSubmitting(true);
-                
-                await axios({
-                    method: 'POST',
-                    url: '/api/send-mail',
-                    data: {
-                        formType: 'contact',
-                        fields: values
+
+                const response = await sendMail({
+                    body: {
+                        formType: type,
+                        ...values
                     }
                 })
-                .then((res) => {
-                    console.log("response", res.data)
-                    setFormSentStatus(true)
-                    setSubmitting(false)
-                    console.log('IF_FORM_SENDED', IF_FORM_SENDED)
-                })
-                .catch((err) => {
-                    setFormSentStatus(false)
-                    console.log('IF_FORM_SENDED', IF_FORM_SENDED)
-                    console.log("error", err)
-                })
+                
+                setSubmitting(false)
+                setFormSentStatus(response.success)
             }
         }
     } 

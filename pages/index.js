@@ -3,10 +3,8 @@ import Layout from './_layout';
 import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import Testimonials from '@components/layout/home/Testimonials';
-import Masthead from '@components/layout/home/Masthead';
 import Companies from '@components/shared/Companies';
 import MastheadBottom from '@components/layout/home/MastheadBottom';
-import Loading from '@components/layout/Loading';
 import MastheadFullScreen from '@components/layout/home/MastheadFullScreen';
 
 export default function Index() {

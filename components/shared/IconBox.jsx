@@ -1,7 +1,7 @@
 export default function IconBox({icon}){
     return (
-        <div className="grid place-content-center place-items-center w-fit p-4 bg-brand-primary text-white">
-            <span className="material-symbols-outlined !text-2xl">{icon}</span>
+        <div className="rounded grid place-content-center place-items-center w-16 h-16 text-2xl p-4 bg-brand-primary text-white">
+            <span className="material-symbols-outlined !text-[32px]">{icon}</span>
         </div>
     )
 }

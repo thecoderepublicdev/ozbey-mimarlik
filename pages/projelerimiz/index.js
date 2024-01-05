@@ -1,44 +1,13 @@
 import Title from "@components/shared/Title";
 import Layout from "../_layout";
 import { Tab } from "@headlessui/react";
-import { Fragment } from "react";
+import { Fragment, memo } from "react";
 import classNames from "classnames";
-import Grid from "@components/layout/Grid";
-import Projects from "@data/Projects";
-import ProjectBox from "@components/projects/ProjectBox";
+import AllProjects from "@components/projects/AllProjects";
+import CompletedProjects from "@components/projects/Completed";
+import NonCompletedProjects from "@components/projects/NonCompleted";
 
-
-const AllProjects = () => {
-    return(
-        <Grid cols={3} gap={4}>
-            {Projects.map((project, key) => (
-                <ProjectBox key={key}>
-                    <ProjectBox.Thumbnail>{project.thumbnail}</ProjectBox.Thumbnail>
-                    <ProjectBox.Name>{project.name}</ProjectBox.Name>
-                    <ProjectBox.Status>{project.status}</ProjectBox.Status>
-                </ProjectBox>
-            ))}
-        </Grid>
-    )
-}
-
-const CompletedProjects = () => {
-    return(
-        <Grid cols={3} gap={4}>
-            
-        </Grid>
-    )
-}
-
-const NonCompletedProjects = () => {
-    return(
-        <Grid cols={3} gap={4}>
-
-        </Grid>
-    )
-}
-
-export default function ProjectsHome() {
+function ProjectsHome() {
     return(
         <Layout>
             <Tab.Group>
@@ -77,13 +46,13 @@ export default function ProjectsHome() {
 
                 <div className="container mx-auto max-w-screen-2xl">
                     <Tab.Panels>
-                        <Tab.Panel>
+                        <Tab.Panel className="filter-container">
                             <AllProjects/>
                         </Tab.Panel>
-                        <Tab.Panel>
+                        <Tab.Panel className="filter-container">
                             <CompletedProjects/>
                         </Tab.Panel>
-                        <Tab.Panel>
+                        <Tab.Panel className="filter-container">
                             <NonCompletedProjects/>
                         </Tab.Panel>
                     </Tab.Panels>
@@ -92,3 +61,5 @@ export default function ProjectsHome() {
         </Layout>
     )
 }
+
+export default memo(ProjectsHome)

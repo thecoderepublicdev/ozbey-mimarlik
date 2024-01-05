@@ -1,9 +1,10 @@
 import classNames from "classnames";
 import { DM_Sans } from "next/font/google";
+import { memo } from "react";
 
 const Font = DM_Sans({subsets: ['latin']});
 
-export default function MastheadFullScreen() {
+function MastheadFullScreen() {
     const Specs = [
         {
             isHidden: true,
@@ -55,7 +56,7 @@ export default function MastheadFullScreen() {
     }
 
     return(
-        <section style={{backgroundImage: `url(${require(`@assets/images/firuzkoy/Firüzköy-12.jpg`).default.src})`}} className="relative bg-cover w-full h-screen grid place-content-center place-items-center before:content-[''] before:w-full before:h-full before:bg-black/30 before:absolute before:z-1">
+        <section style={{backgroundImage: "url('/assets/images/firuzkoy/Firüzköy-12.webp')"}} className="relative bg-cover overflow-hidden container-xl mx-auto h-[800px] grid place-content-center place-items-center before:content-[''] before:w-full before:h-full before:bg-black/30 before:absolute before:z-1">
             <div className="z-10 max-w-screen-xl grid place-content-center place-items-center text-center gap-4">
                 <h1 className={classNames(
                     'font-bold text-7xl text-white tracking-tighter	', Font.className
@@ -75,10 +76,12 @@ export default function MastheadFullScreen() {
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
-                    <a className="block rounded-full px-6 py-4 font-bold cursor-pointer bg-white">Talep Oluştur</a>
-                    <a className="block rounded-full px-6 py-4 font-bold cursor-pointer text-white border-2 border-white backdrop-blur-md">Detaylı Bilgi Al</a>
+                    <a className="block rounded px-6 py-4 font-bold cursor-pointer bg-white">Talep Oluştur</a>
+                    <a className="block rounded px-6 py-4 font-bold cursor-pointer text-white border-2 border-white backdrop-blur-md">Detaylı Bilgi Al</a>
                 </div>
             </div>
         </section>
     )
 }
+
+export default memo(MastheadFullScreen)

@@ -60,7 +60,7 @@ export default function Modal({children, ...props}) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-md" />
+            <div className="fixed inset-0 bg-gradient-to-t from-black/70 to-black/20 bg-opacity-25"/>
           </Transition.Child>
 
           <div className="fixed inset-0 overflow-y-auto">
@@ -74,7 +74,7 @@ export default function Modal({children, ...props}) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="rounded w-full max-w-md transform overflow-hidden bg-white p-6 text-left align-middle shadow-xl transition-all">
                   <button>
                     <span onClick={close} className='material-symbols-outlined text-gray-400 bg-gray-100 rounded-full p-2 mb-4'>close</span>
                   </button>

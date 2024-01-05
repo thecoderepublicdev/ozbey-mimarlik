@@ -1,9 +1,5 @@
-import { createElement, useEffect, useState } from "react";
-import { useFormik } from "formik";
 import classNames from "classnames";
-import * as Yup from 'yup';
 import Modal from '@shared/Modal';
-import axios from "axios";
 import ContactForm from "../../../forms/ContactForm";
 import { useHeader } from ".";
 
@@ -62,7 +58,7 @@ export default function OfferButton() {
         },
         ModalTrigger: {
             className: classNames(
-                "px-6 py-4 text-sm transition-all ease-in-out flex items-center gap-4 h-full", {
+                "px-6 py-4 text-sm transition-all ease-in-out flex items-center gap-4 h-full rounded", {
                     "bg-brand-primary hover:bg-black text-white": variant === 'default',
                     "bg-transparent backdrop-blur-md rounded-full font-bold hover:bg-black text-white": variant === 'transparent',
                 }
@@ -83,7 +79,7 @@ export default function OfferButton() {
             </Modal.Title>
 
             <Modal.Content>
-                <ContactForm/>
+                <ContactForm type="KENTSEL_DONUSUM"/>
             </Modal.Content>
         </Modal>
     )

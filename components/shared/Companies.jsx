@@ -1,52 +1,29 @@
 import LogoCloudData from "@data/LogoCloud"
-import classNames from "classnames"
-import Image from "next/image"
-import { DM_Sans } from 'next/font/google';
 import SectionHeader from "./SectionHeader";
+import { memo } from "react";
 
-const DMSans = DM_Sans({subsets: ['latin']});
-
-export default function Companies() {
+function Companies() {
     const Props = {
         Section: {
-            className: classNames(
-                'bg-white'
-            )
+            className: 'bg-white'
         },
         Container: {
-            className: classNames(
-                'py-8 px-4 mx-auto max-w-screen-2xl lg:py-16 lg:px-6 grid gap-6'
-            )
+            className: 'py-8 px-4 mx-auto max-w-screen-2xl lg:py-16 lg:px-6 grid gap-6'
         },
         ContextContainer: {
-            className: classNames(
-                'flex justify-between items-center align-center'
-            )
+            className: 'flex justify-between items-center align-center'
         },
         ContextContainerInner: {
-            className: classNames(
-                'grid gap-4'
-            )
+            className: 'grid gap-4'
         },
         ContextTitle: {
-            className: classNames(
-                'text-4xl font-bold text-brand-primary'
-            )
-        },
-        ContextDescription: {
-            className: classNames(
-                'mb-8 font-light text-black/50 lg:mb-16 sm:text-xl', DMSans.className
-            )
+            className: 'text-4xl font-bold text-brand-primary'
         },
         LogoCloudContainer: {
-            className: classNames(
-                'grid grid-cols-2 lg:grid-cols-3 gap-1 overflow-hidden'
-            )
+            className: 'grid grid-cols-2 lg:grid-cols-4 gap-1 overflow-hidden'
         },
         LogoCloudContainerItems: {
-            className: classNames(
-                'bg-brand-primary/5 group transition-all min-h-[200px] lg:min-h-[300px] ease-in-out relative overflow-hidden p-10 grid place-items-center place-content-center'
-            )
+            className: 'rounded bg-brand-primary/5 group transition-all min-h-[200px] lg:min-h-[300px] ease-in-out relative overflow-hidden p-10 grid place-items-center place-content-center'
         },
     }
     return(
@@ -60,7 +37,7 @@ export default function Companies() {
                         İnşaat alanı dışında da farklı sektörlerde ticari faaliyetlerimizi sürdürmekteyiz.
                     </SectionHeader.Description>
 
-                    <SectionHeader.CallToAction icon="arrow_right_alt">
+                    <SectionHeader.CallToAction link="/hakkimizda" icon="arrow_right_alt">
                         Hakkımızda
                     </SectionHeader.CallToAction>
                 </SectionHeader>
@@ -68,15 +45,11 @@ export default function Companies() {
                 <div {...Props.LogoCloudContainer}>
                     {LogoCloudData.map((item, index) => (
                         <div key={index} {...Props.LogoCloudContainerItems}>
-                            <Image
+                            <img
                                 src={item.logo}
                                 alt={item.altText}
-                                className="object-cover"
-                                width="100"
-                                height="auto"
+                                className="object-contain w-24 h-24"
                                 loading='lazy'
-                                placeholder="blur"
-                                blurDataURL={item.logo.blurDataURL}
                             />
 
                             {item.callToAction.isHave && (
@@ -93,3 +66,5 @@ export default function Companies() {
         </section>
     )
 }
+
+export default memo(Companies)

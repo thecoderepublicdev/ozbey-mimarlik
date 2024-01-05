@@ -115,7 +115,7 @@ export default function Masthead({children}) {
                         ))}
                     </div>
 
-                    <a href='#' className='px-8 py-4 bg-black text-white rounded-full hover:shadow-xl transition ease-in-out'>
+                    <a href='#' className='px-8 py-4 bg-black text-white rounded hover:shadow-xl transition ease-in-out'>
                         Detaylı Bilgi Al
                     </a>
                 </div>
