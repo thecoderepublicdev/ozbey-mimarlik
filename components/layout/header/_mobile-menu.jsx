@@ -3,7 +3,7 @@ import Logo from "@components/Logo";
 
 export default function MobileMenu() {
     return(
-        <div className="flex justify-between lg:hidden static">
+        <div className="flex justify-between lg:hidden static p-4 z-10">
             <Logo/>
 
             <Menu>
@@ -15,7 +15,7 @@ export default function MobileMenu() {
                     )}
                 </Menu.Button>
 
-                <Menu.Items as="div" className="absolute top-0 bottom-0 left-0 right-0 z-10 bg-white w-full h-full">
+                <Menu.Items as="div" className="absolute top-0 z-10 p-4 bg-white w-full h-fit">
                     <ul>
                         <li>test</li>
                         <li>test</li>

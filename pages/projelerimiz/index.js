@@ -1,7 +1,7 @@
 import Title from "@components/shared/Title";
 import Layout from "../_layout";
 import { Tab } from "@headlessui/react";
-import { Fragment, memo } from "react";
+import { Fragment, Suspense, memo } from "react";
 import classNames from "classnames";
 import AllProjects from "@components/projects/AllProjects";
 import CompletedProjects from "@components/projects/Completed";

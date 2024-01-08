@@ -1,24 +1,24 @@
 import Projects from "@data/Projects";
 
 export default function fetchHandler(req, res) {
-    const { filterType } = req.body;
+    const { filter } = req.body;
     
     try {
-        switch(filterType) {
+        switch(filter) {
             case 'ALL':
-                res.status(200).json({success: true, Projects})
+                res.status(200).json({success: true, projects: Projects})
                 break;
                 
             case 'COMPLETED':
-                res.status(200).json({success: true, projects: Projects.filter(p => p.status === 'COMPLETED')})
+                res.status(200).json({success: true, projects: Projects.filter(project => project.status === 'COMPLETED')})
                 break;
     
             case 'NON_COMPLETED':
-                res.status(200).json({success: true, projects: Projects.filter(p => p.status === 'NON_COMPLETED')})
+                res.status(200).json({success: true, projects: Projects.filter(project => project.status === 'NON_COMPLETED')})
                 break;
     
             default:
-                res.status(404).json({success: false, message: 'Undefined filter type'});
+                res.status(404).json({success: false, message: 'Undefined filter type', body: req.body});
                 break;
         }
     } catch (err) {

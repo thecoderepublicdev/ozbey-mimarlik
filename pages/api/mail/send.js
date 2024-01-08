@@ -30,7 +30,7 @@ async function MailSendHandler(req, res) {
     
         const mailOptions = {
             from: `${fullName} <${process.env.GOOGLE_ACCOUNT_EMAIL}>`,
-            to: 'cenk@thecoderepublic.dev',
+            to: 'info@ozbeymimarlik.com',
             subject: `Yeni Kentsel Dönüşüm Talebi!`,
             html: RenderedEmailContent
         };
