@@ -9,8 +9,8 @@ function Title({level, children}) {
     return createElement(level, {
         className: classNames(
             'font-bold tracking-tighter text-brand-primary', PrimaryFont, {
-                'text-7xl': level === 'h1',
-                'text-6xl': level === 'h2',
+                'lg:text-7xl md:text-5xl text-4xl': level === 'h1',
+                'lg:text-6xl md:text-4xl text-2xl': level === 'h2',
                 'text-4xl': level === 'h3',
                 'text-3xl': level === 'h4',
                 'text-2xl': level === 'h5',

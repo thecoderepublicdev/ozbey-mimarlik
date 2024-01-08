@@ -46,7 +46,7 @@ function MastheadFullScreen() {
     const SpecsTag = ({ icon, title, className, style}) => {
         return(
             <div className={classNames(
-                'rounded-full animate__animated animate__fadeInUp col-start-auto text-white backdrop-blur-sm p-4 flex gap-4 justify-center align-center items-center content-center',
+                'rounded-full animate__animated animate__fadeInUp col-start-auto text-white backdrop-blur-sm lg:p-4 p-2 flex lg:gap-4 gap-2 justify-center align-center items-center content-center',
                 className
             )} style={style}>
                 <span className='material-symbols-outlined'>{icon}</span>
@@ -59,7 +59,7 @@ function MastheadFullScreen() {
         <section style={{backgroundImage: "url('/assets/images/firuzkoy/Firüzköy-12.webp')"}} className="relative bg-cover overflow-hidden container-xl mx-auto h-[800px] grid place-content-center place-items-center before:content-[''] before:w-full before:h-full before:bg-black/30 before:absolute before:z-1">
             <div className="z-10 max-w-screen-xl grid place-content-center place-items-center text-center gap-4">
                 <h1 className={classNames(
-                    'font-bold text-7xl text-white tracking-tighter	', Font.className
+                    'font-bold xl:text-7xl md:text-4xl text-3xl text-white tracking-tighter	', Font.className
                 )}>
                     Göl Manzaralı & Bahçeli Yaşam Artık Avcılar’da!
                 </h1>

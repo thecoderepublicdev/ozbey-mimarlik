@@ -21,7 +21,7 @@ export default function TestimonialsBox({children}) {
         Name: children.filter(c => c.type === Name)
     }
     return(
-        <figure className="rounded-2xl border hover:drop-shadow-2xl transition-all ease-in-out flex flex-col justify-between items-start p-8 bg-white md:p-12">
+        <figure className="rounded-2xl border hover:drop-shadow-2xl transition-all ease-in-out flex flex-col justify-between items-start sm:p-8 p-4 bg-white md:p-12">
             {Childrens.Comment}
             <figcaption className="flex justify-start items-center">
                 <div className="font-medium text-left">

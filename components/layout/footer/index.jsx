@@ -49,7 +49,7 @@ export default function Footer() {
                 </div>
 
                 <div className="text-white/50">
-                    <label><a href="https://thecoderepublic.com.tr/?utm_source=ozbeymimarlık">The Code Republic</a> tarafından geliştirildi</label>
+                    <label><a href="https://thecoderepublic.com.tr/?utm_source=ozbeymimarlık" target="_blank">The Code Republic</a> tarafından geliştirildi</label>
                 </div>
             </div>
         </footer>

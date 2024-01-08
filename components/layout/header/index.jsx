@@ -25,13 +25,13 @@ function Header({variant}) {
         Header: {
             className: classNames(
                 {
-                    "w-full sticky top-0 bg-white/50 backdrop-blur-md z-10": variant === 'default',
+                    "w-full sticky top-0 bg-white xl:bg-white/50 xl:backdrop-blur-md z-[99999]": variant === 'default',
                     "absolute z-10 w-full text-white": variant === 'transparent'
                 }
             )
         },
         HeaderInner: {
-            className: "container max-w-screen-2xl mx-auto hidden lg:flex justify-between items-center px-4 py-2"
+            className: "container max-w-screen-2xl mx-auto hidden xl:flex justify-between items-center px-4 py-2"
         }
     }
 
