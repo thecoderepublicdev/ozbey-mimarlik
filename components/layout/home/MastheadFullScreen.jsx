@@ -77,7 +77,7 @@ function MastheadFullScreen() {
 
                 <div className="grid grid-cols-2 gap-4">
                     <a className="block rounded px-6 py-4 font-bold cursor-pointer bg-white">Talep Oluştur</a>
-                    <a className="block rounded px-6 py-4 font-bold cursor-pointer text-white border-2 border-white backdrop-blur-md">Detaylı Bilgi Al</a>
+                    <a href="/projelerimiz/beykoru-villalari" className="block rounded px-6 py-4 font-bold cursor-pointer text-white border-2 border-white backdrop-blur-md">Detaylı Bilgi Al</a>
                 </div>
             </div>
         </section>

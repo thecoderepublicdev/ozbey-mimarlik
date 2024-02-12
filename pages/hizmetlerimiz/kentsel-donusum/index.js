@@ -5,6 +5,8 @@ import { Disclosure } from '@headlessui/react'
 import classNames from "classnames";
 import Modal from "@components/shared/Modal";
 import HowToApplyUrbanTransformation from "@data/HowToApplyUrbanTransformation";
+import Title from "@components/shared/Title";
+import Container from "@components/layout/Container";
 
 const FAQ = () => {
     return(
@@ -19,7 +21,7 @@ const FAQ = () => {
                                     'p-4 flex justify-between items-center w-full'
                                 )}
                             >
-                                <label className={classNames({
+                                <label className={classNames('text-left text-xl', {
                                     'text-brand-primary': open,
                                 })}>{faq.question}</label>
                                 <span className={classNames(
@@ -27,7 +29,7 @@ const FAQ = () => {
                                     open && 'rotate-180'
                                 )}>expand_more</span>
                             </Disclosure.Button>
-                            <Disclosure.Panel className="text-gray-500 p-4">
+                            <Disclosure.Panel className="text-gray-500 text-xl p-4">
                                 {faq.answer}
                             </Disclosure.Panel>
                         </React.Fragment>
@@ -48,7 +50,7 @@ export default function KentselDonusum() {
                 backgroundRepeat: 'no-repeat',
             },
             className: classNames(
-                'min-h-[700px] overflow-hidden grid'
+                'min-h-[400px] xl:min-h-[700px] lg:min-h-[700px] 2xl:min-h-[700px] overflow-hidden grid'
             )
         },
         MastheadContainerInner: {
@@ -58,7 +60,7 @@ export default function KentselDonusum() {
         },
         MastheadContainerInnerContext: {
             className: classNames(
-                'max-w-screen-xl mx-auto grid gap-4'
+                'max-w-screen-xl p-6 mx-auto grid gap-4'
             )
         },
         MastheadTitle: {
@@ -94,17 +96,6 @@ export default function KentselDonusum() {
                     <div {...Props.MastheadContainerInnerContext}>
                         <h1 {...Props.MastheadTitle}>Kentsel Dönüşüm</h1>
                         <p {...Props.MastheadDescription}>Eski, ekonomik ömrünü tamamlamış, depremlerde hasar görmüş evinizi; <strong>6306 sayılı Afet Riskli Yapıların Yenilenmesi Hakkında Kanun (Kentsel Dönüşüm Kanunu)</strong> ile yeniden inşa edebilirsiniz.</p>
-                        <Modal>
-                            <Modal.Button className="bg-white px-12 py-4 w-fit">
-                                Başvur
-                            </Modal.Button>
-
-                            <Modal.Title>Kentsel Dönüşüm Başvurusu</Modal.Title>
-
-                            <Modal.Content>
-                                <p>content</p>
-                            </Modal.Content>
-                        </Modal>
                     </div>
                 </div>
             </div>
@@ -116,10 +107,10 @@ export default function KentselDonusum() {
                         <h2 {...Props.FAQSectionTitle}>Kentsel Dönüşümden Nasıl Faydalanabilirim?</h2>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4 mt-6">
+                    <div className="grid xl:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-2 gap-4 mt-6">
                         {HowToApplyUrbanTransformation.map((item, index) => (
                             <div key={index} className="flex flex-col gap-2 p-6 bg-brand-primary/5">
-                                <h3 className="font-bold text-xl">{item.title}</h3>
+                                <h3 className="font-bold text-2xl">{item.title}</h3>
                                 <p className="text-black/50">{item.description}</p>
                             </div>
                         ))}
