@@ -3,7 +3,6 @@ import * as Yup from 'yup';
 import "yup-phone-lite";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import classNames from "classnames";
-import axios from 'axios';
 import { useState } from 'react';
 import Alert from '@components/shared/Alert';
 import sendMail from '@hooks/sendMail';

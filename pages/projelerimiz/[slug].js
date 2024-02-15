@@ -30,9 +30,9 @@ function ProjectSingle() {
 
     return(
         <Layout showLoading={isLoading}>
-            <ProjectContent>
+            <ProjectContent type={currentProject?.type}>
                 <ProjectContent.Title>{currentProject?.title}</ProjectContent.Title>
-                <ProjectContent.Gallery>{["1", "2"]}</ProjectContent.Gallery>
+                <ProjectContent.Gallery>{currentProject?.gallery}</ProjectContent.Gallery>
                 <ProjectContent.Specs>
                     <ProjectContent.Specs.RoomCount>1</ProjectContent.Specs.RoomCount>
                 </ProjectContent.Specs>

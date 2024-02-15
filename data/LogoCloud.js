@@ -2,7 +2,7 @@ import classNames from 'classnames';
 
 const LogoCloudData = [
     {
-        logo: '/assets/logos/gloria-jeans-avcilar.png',
+        logo: '/assets/logos/gloria-jeans-avcilar.webp',
         altText: '',
         callToAction: {
             isHave: true,
@@ -18,7 +18,7 @@ const LogoCloudData = [
         }
     },
     {
-        logo: '/assets/logos/gloria-jeans-cennet.png',
+        logo: '/assets/logos/gloria-jeans-cennet.webp',
         altText: '',
         callToAction: {
             isHave: true,
@@ -34,7 +34,7 @@ const LogoCloudData = [
         }
     },
     {
-        logo: '/assets/logos/gloria-jeans-aydin-universitesi.png',
+        logo: '/assets/logos/gloria-jeans-aydin-universitesi.webp',
         altText: '',
         callToAction: {
             isHave: true,
@@ -50,7 +50,7 @@ const LogoCloudData = [
         }
     },
     {
-        logo: '/assets/logos/ozel-parlayan-yildiz.png',
+        logo: '/assets/logos/ozel-parlayan-yildiz.webp',
         altText: 'Parlayan Yıldız Anaokulu ile okul öncesi eğitimde çocuklarımızın temel eğitim seviyelerini geliştirmekte ve bu doğrultuda elimizden gelen eğitimin en iyisini sağlamaktayız.',
         callToAction: {
             isHave: true,

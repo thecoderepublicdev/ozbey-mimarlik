@@ -8,7 +8,7 @@ export default function Footer() {
     const Props = {
         Footer: {
             className: classNames(
-                'text-black w-full mt-10 min-h-[400px] bg-black text-white'
+                'text-black w-full mt-10 min-h-[400px] bg-gradient-to-t from-[#18181b] to-[#09090b] text-white'
             )
         },
         FooterInner: {

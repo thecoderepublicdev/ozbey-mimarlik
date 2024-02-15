@@ -1,12 +1,26 @@
+import React from "react";
 import Title from "@components/shared/Title"
-import { memo } from "react"
+import Container from "@components/layout/Container";
+
 
 function _Title({children}) {
-    return <Title level="h1">{children}</Title>
+    return(
+        <Title level="h1">{children}</Title>
+    )
 }
 
 function Gallery({children}) {
-    return <></>
+    return(
+        <div className="mt-4 grid gap-4 grid-cols-2 xl:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-3">
+            {children?.map((item, key) => (
+                <img
+                    key={key}
+                    className="object-cover w-full h-auto"
+                    src={item}
+                />
+            ))}
+        </div>
+    )
 }
 
 function Specs({children}) {
@@ -17,17 +31,25 @@ function RoomCount({children}) {
     return <>I'm RoomCount</>
 }
 
-export default function ProjectContent({children}) {
+export default function ProjectContent({type, children}) {
     const Childrens = {
         _Title: children.filter(c => c.type === _Title),
         Gallery: children.filter(c => c.type === Gallery),
         Specs: children.filter(c => c.type === Specs),
     }
 
+    console.log(Childrens.Gallery[0]?.props);
+    console.log(Childrens.Gallery[0]?.props?.children);
+
     return(
-        <div className='container mx-auto max-w-screen-2xl'>
+        <Container>
             {Childrens._Title}
-        </div>
+            {Childrens.Gallery}
+
+            <div>
+
+            </div>
+        </Container>
     )
 }
 

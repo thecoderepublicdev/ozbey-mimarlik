@@ -4,6 +4,7 @@ const Projects = [
     {
         id: 1,
         status: 'COMPLETED',
+        type: 'URBAN_TRANSFORMATION',
         title: "İdeal Palas",
         slug: createSlug("İdeal Palas"),
         thumbnail: "/assets/images/ideal_palas/2.webp",
@@ -23,6 +24,7 @@ const Projects = [
     {
         id: 2,
         status: 'COMPLETED',
+        type: 'URBAN_TRANSFORMATION',
         title: "İdealtepe",
         slug: createSlug("İdealtepe"),
         thumbnail: "/assets/images/idealtepe/2.webp",
@@ -33,15 +35,13 @@ const Projects = [
             "/assets/images/idealtepe/4.webp",
             "/assets/images/idealtepe/5.webp",
             "/assets/images/idealtepe/6.webp",
-            "/assets/images/idealtepe/7.webp",
-            "/assets/images/idealtepe/8.webp",
-            "/assets/images/idealtepe/9.webp",
-            "/assets/images/idealtepe/10.webp",
+            "/assets/images/idealtepe/7.webp"
         ]
     },
     {
         id: 3,
         status: 'COMPLETED',
+        type: 'URBAN_TRANSFORMATION',
         title: "Maltepe Aydınevler",
         slug: createSlug("Maltepe Aydınevler"),
         thumbnail: "/assets/images/maltepe_aydinevler/1.webp",
@@ -55,6 +55,7 @@ const Projects = [
     {
         id: 4,
         status: 'COMPLETED',
+        type: 'URBAN_TRANSFORMATION',
         title: "Reşitpaşa",
         slug: createSlug("Reşitpaşa"),
         thumbnail: "/assets/images/sisecam-konutlari/3.webp",
@@ -67,6 +68,7 @@ const Projects = [
     {
         id: 5,
         status: 'COMPLETED',
+        type: 'URBAN_TRANSFORMATION',
         title: "Şişecam Konutları",
         slug: createSlug("Şişecam Konutları"),
         thumbnail: "/assets/images/sisecam-konutlari/2.webp",
